@@ -90,3 +90,16 @@ We'll make use of details regarding a publishing business that issues both trans
   ON b.editor_id = e.id
   ORDER BY b.id;
 ```
+5/ Join all four tables to get information about all of the books, authors, editors, and translators in one table.
+```sql
+SELECT b.id, b.title, a.last_name AS author, e.last_name AS editor,
+t.last_name AS translator
+FROM books b
+FULL JOIN authors a
+ON b.author_id = a.id
+FULL JOIN editors e
+ON b.editor_id = e.id
+FULL JOIN translators t
+ON b.translator_id = t.id
+ORDER BY b.id;
+```
