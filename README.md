@@ -2,7 +2,55 @@
 Several data analysis tasks made using SQL 
 This different data analysis case study resolved using SQL language 
 
-For the examples, we will use information about a publishing house that publishes original and translated books. Our database contains four tables: books, authors, editors, and translators.
+We'll make use of details regarding a publishing business that issues both translated and original works. `Books`,`Authors`, `Editors`, and `Translators` are the four tables in our database.
+
+- **`Books`**
+
+| ID  | Title | Type  | author_id | editor_id  | translator_id |
+| :------------- | :------------- | :------------- | :------------- | :------------- | :------------- |
+| 1  |Harry Potter and the Chamber of Secrets   |Original | 11  | 20 |   |
+| 2  | Oranges  | Translated  | 12  | 25  | 31  |
+| 3  | The Changeling  | Original  | 13  | 21  |   |
+| 4  | The Lord of the Rings: Complete Visual Companion | Original  | 14 | 22  |  |
+| 5  | Applied AI | Translated | 16 |24  | 34  |
+| 6  | Your Trip  | Translated | 15  | 23  | 32  |
+| 7  | The Control of Nature | Original | 17  | 26  |   |
+| 8  | Your Happy Life	 | Translated | 15  | 23  | 33  |
+
+- **`Authors`**
+
+| ID  | first_name | last_name  | 
+| :------------- | :------------- | :------------- | 
+| 11  |J.K   |Rowling |
+| 12  | Olga   | Savelieva  | 
+| 13  |Kate   | Horsley  |
+| 14  |Jude  | Fisher  |
+| 15  | Yao  | Dou  |
+| 16  | Jack  | Smart  |
+| 17  | John   | McPhee  |
+
+
+- **`Editors`**
+
+| ID  | first_name | last_name  | 
+| :------------- | :------------- | :------------- | 
+| 20  | Peter  | Honess  |
+| 21  | Alton    | Raible  |
+| 23  | Mark  | Johnson  |
+| 24  | Maria  | Evans  |
+| 25  | Sebastian  | Wright  |
+| 26  | Joshua   | Rothman   |
+
+- **`translators`**
+
+| ID  | first_name | last_name  | 
+| :------------- | :------------- | :------------- | 
+| 31  |Ira   |Davies |
+| 32  | Ling   | Weng  | 
+| 33  |Kristian  | Green  |
+| 34  |Roman  | Edwards  |
+
+
 
 1/Query book titles along with their authors (i.e., the author’s first name and last name):
 ```sql
