@@ -2,7 +2,7 @@
 Several data analysis tasks made using SQL 
 This different data analysis case study resolved using SQL language 
 
-#Case 1:
+## Case 1:
 We'll make use of details regarding a publishing business that issues both translated and original works. `Books`,`Authors`, `Editors`, and `Translators` are the four tables in our database.
 
 - **`Books`**
@@ -53,7 +53,7 @@ We'll make use of details regarding a publishing business that issues both trans
 
 
 
-1/Query book titles along with their authors (i.e., the author’s first name and last name):
+#### Task 1/ Query book titles along with their authors (i.e., the author’s first name and last name):
 ```sql
   SELECT b.id, b.title, a.first_name, a.last_name
   FROM books b
@@ -62,7 +62,7 @@ We'll make use of details regarding a publishing business that issues both trans
   ORDER BY b.id;
 ```
 
-2/ Query books along with their translators (i.e., the translator’s last name). Only half of  books have been translated and thus have a corresponding translator:
+#### Task 2/ Query books along with their translators (i.e., the translator’s last name). Only half of  books have been translated and thus have a corresponding translator:
 ```sql
   SELECT b.id, b.title, b.type, t.last_name AS translator
   FROM books b
@@ -71,7 +71,7 @@ We'll make use of details regarding a publishing business that issues both trans
   ORDER BY b.id;
 ```
  
-3/ Query information about each book’s author and translator (i.e., their last names). We also want to keep the basic information about each book (i.e., id, title, and type).
+#### Task 3/ Query information about each book’s author and translator (i.e., their last names). We also want to keep the basic information about each book (i.e., id, title, and type).
 ```sql
   SELECT b.id, b.title, b.type, a.last_name AS author,
   t.last_name AS translator
@@ -83,7 +83,7 @@ We'll make use of details regarding a publishing business that issues both trans
   ORDER BY b.id;
 ```
   
-4/Query the basic book information (i.e., ID and title) along with the last names of the corresponding editors. Again, we want to keep all of the books in the result set.
+#### Task 4/Query the basic book information (i.e., ID and title) along with the last names of the corresponding editors. Again, we want to keep all of the books in the result set.
 ```sql
   SELECT b.id, b.title, e.last_name AS editor
   FROM books b
@@ -91,7 +91,7 @@ We'll make use of details regarding a publishing business that issues both trans
   ON b.editor_id = e.id
   ORDER BY b.id;
 ```
-5/ Join all four tables to get information about all of the books, authors, editors, and translators in one table.
+#### Task 5/ Join all four tables to get information about all of the books, authors, editors, and translators in one table.
 ```sql
 SELECT b.id, b.title, a.last_name AS author, e.last_name AS editor,
 t.last_name AS translator
