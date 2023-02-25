@@ -104,3 +104,4 @@ FULL JOIN translators t
 ON b.translator_id = t.id
 ORDER BY b.id;
 ```
+## Case 2:
