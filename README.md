@@ -105,3 +105,95 @@ ON b.translator_id = t.id
 ORDER BY b.id;
 ```
 ## Case 2:
+  We have the two tables below :
+
+- **`Customer `**
+
+| customer_id  | age | location  | gender|
+| :------------- | :------------- | :------------- |  :------------- | 
+| 106  |34   |Ariena ||Male |
+| 107  | 30   | Sfax  |  Male  | 
+| 108  |42  | Sousse  |Female  |
+| 110  |40  |Ariena ||Male |
+| 140  |40  | Sousse  |Female  |
+| 165  |52  |Ariena ||Male |
+| 201  |37  | Monastir  |Female  |
+ 
+ 
+ - **`Order `**
+ 
+ | order_id  | customer_id | date  | amount| is_sale |
+| :------------- | :------------- | :------------- |  :------------- | :------------- | 
+| 23001  |120   |2021-01-30 |104.10 |True |
+| 23006  |124   | 2021-02-14  | 84.20 | False  | 
+| 23009  |165  | 2021-04-13  |46.60 |True  |
+| 23012  |167  |2021-04-07 |66.30|True |
+| 23020  |201  |2021-03-04 |10.60|False |
+
+
+#### Task 1/ We want to see the average age of customers who made a purchase on 2020–04–17.
+
+```sql
+  select avg(customer.age), orders.date
+  from customer
+  join orders
+  on customer.customer_id = orders.customer_id
+  where orders.date = '2020–04–17';
+```
+
+#### Task 2/ We want to see the average order amount made by customers in Ariena.
+
+```sql
+select avg(orders.amount)
+from customer
+join orders
+on customer.customer_id = orders.customer_id
+where customer.location = "Ariena";
+```
+
+#### Task 3/ We want to see the average order amount for each city.
+```sql
+select customer.location, avg(orders.amount)
+from customer
+join orders
+on customer.customer_id = orders.customer_id
+group by customer.location;
+```
+#### Task 4/ We want to see the highest order amount and the age of customer who made that order.
+```sql
+select customer.age, orders.amount
+from customer
+join orders
+on customer.customer_id = orders.customer_id
+order by orders.amount desc
+limit 1;
+```
+
+#### Task 5/ We want to see the highest order amount made by customer whose id is 201.
+```sql
+select max(orders.amount) 
+from customer 
+join orders 
+on customer.customer_id = orders.customer_id 
+where customer.customer_id = 201;
+```
+#### Task 6/ We want to see the top 5 customers from Ariena in terms of the highest average order amount when there is sale.
+```sql
+select c.cust_id, avg(o.amount) as average 
+from customer c 
+join orders o 
+on c.customer_id = o.customer_id 
+where c.location = "Ariena" and o.is_sale = "True" 
+ group by c.customer_id 
+ order by average desc limit 5;
+ ```
+#### Task 7/ We want to find out the location of the customer who has the lowest order amount on 2021–01–30.
+```sql
+select c.customer_id , c.location
+from customer c
+join orders o
+on c.customer_id  = o.customer_id 
+where o.date = "2021–01–30" and o.amount = (
+select min(amount) from orders where date = "2021–01–30"
+ );
+ ```
