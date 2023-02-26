@@ -105,7 +105,7 @@ ON b.translator_id = t.id
 ORDER BY b.id;
 ```
 ## Case 2:
-  We have the two tables below :
+ We have the two tables below :
 
 - **`Customer `**
 
@@ -177,13 +177,13 @@ join orders
 on customer.customer_id = orders.customer_id 
 where customer.customer_id = 201;
 ```
-#### Task 6/ We want to see the top 5 customers from Ariena in terms of the highest average order amount when there is sale.
+#### Task 6/ We want to see the top 5 customers from Sousse in terms of the highest average order amount when there is sale.
 ```sql
 select c.cust_id, avg(o.amount) as average 
 from customer c 
 join orders o 
 on c.customer_id = o.customer_id 
-where c.location = "Ariena" and o.is_sale = "True" 
+where c.location = "Sousse" and o.is_sale = "True" 
  group by c.customer_id 
  order by average desc limit 5;
  ```
