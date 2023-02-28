@@ -197,3 +197,4 @@ where o.date = "2021–01–30" and o.amount = (
 select min(amount) from orders where date = "2021–01–30"
  );
  ```
+## Case 3:
