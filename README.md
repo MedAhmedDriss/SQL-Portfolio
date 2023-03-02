@@ -1,6 +1,6 @@
 # SQL-Portfolio
 #### Several data analysis tasks made using SQL 
-This different data analysis case study resolved using SQL language 
+#### This different data analysis case study resolved using SQL language 
 
 ## Case 1:
 We'll make use of details regarding a publishing business that issues both translated and original works. `Books`,`Authors`, `Editors`, and `Translators` are the four tables in our database.
