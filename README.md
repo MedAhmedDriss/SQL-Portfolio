@@ -3,6 +3,125 @@
 #### This different data analysis case study resolved using SQL language 
 
 ## Case 1:
+
+We habe three tables below for a fictional school that tracks student grades:
+
+### students
+
+| student_id | first_name | last_name   | email                       |
+|------------|------------|-------------|-----------------------------|
+| 1          | Fatma      | Ben Youssef | fatma.benyoussef@esprix.com |
+| 2          | Amine      | Ben Ali     | amine.benali@esprix.com    |
+| 3          | Hela       | Toumi       | hela.toumi@esprix.com      |
+| 4          | Nizar      | Gharsa      | nizar.gharsa@esprix.com     |
+| 5          | Amina      | Khelifi     | amina.khelifi@esprix.com   |
+| 6          | Mohamed    | Ben Ali     | mohamed.benali@esprix.com  |
+| 7          | Asma       | Saadi       | asma.saadi@esprix.com      |
+
+### courses
+
+| course_id | course_name | instructor_id |
+|-----------|-------------|---------------|
+| 1         | Math 101    | 1             |
+| 2         | English 101 | 2             |
+| 3         | History 101 | 3             |
+
+### instructors
+
+| instructor_id | first_name | last_name    | email                        |
+|---------------|------------|--------------|------------------------------|
+| 1             | Ali        | Hamdi        | ali.hamdi@esprix.com        |
+| 2             | Zainab     | Fehmi        | zainab.fehmi@esprix.com      |
+| 3             | Youssef    | Bel Haj Amor | youssef.belhajamor@esprix.com|
+
+### instructors
+
+| enrollment_id | student_id | course_id    | grade                        |
+|---------------|------------|--------------|------------------------------|
+| 1             | 1        | 1        | 80      |
+| 2             | 2     | 2        | 90      |
+| 3             | 3    | 3 | 85|
+| 4             | 4       | 1       | 75       |
+| 5             | 5     | 2        | 92      |
+| 6             | 6    | 3 | 87|
+| 7             | 7       | 4        | 88        |
+| 8             | 1     | 5        | 91      |
+| 9             | 2    | 1 | 83|
+| 10             | 3        | 2        | 79        |
+| 11             | 4     | 3       | 81      |
+| 12             | 5    | 4 | 95|
+
+The Students table contains information about the students enrolled in the school, including their unique ID, first name, last name, and email. The Courses table lists all the courses offered by the school and includes the course ID, name, and instructor ID. The Instructors table contains information about the instructors who teach at the school, including their unique ID, first name, last name, and email. Finally, the Grades table contains information about the grades earned by each student in each course, including the student ID, course ID, and actual grade earned.
+
+
+#### Task 1/ What are the names of all students who are enrolled in "Mathematics" course?
+```sql
+ SELECT s.first_name, s.last_name
+FROM students s
+INNER JOIN grades g ON s.student_id = g.student_id
+INNER JOIN courses c ON g.course_id = c.course_id
+WHERE c.course_name = 'Mathematics';
+```
+
+#### Task 2/ What are the names of all instructors who taught a course with a grade of "A"?
+
+```sql
+ SELECT DISTINCT i.first_name, i.last_name
+FROM instructors i
+INNER JOIN courses c ON i.instructor_id = c.instructor_id
+INNER JOIN grades g ON c.course_id = g.course_id
+WHERE g.grade = 'A';
+```
+
+#### Task 3/How many students are enrolled in each course?
+
+```sql
+SELECT c.course_name, COUNT(DISTINCT g.student_id) as num_students
+FROM courses c
+INNER JOIN grades g ON c.course_id = g.course_id
+GROUP BY c.course_name;
+```
+
+
+#### Task 4/What is the average grade for each course?
+
+```sql
+SELECT c.course_name, AVG(g.grade) as avg_grade
+FROM courses c
+INNER JOIN grades g ON c.course_id = g.course_id
+GROUP BY c.course_name;
+```
+
+#### Task 5/What is the name of the student who has the highest grade across all courses?
+
+```sql
+SELECT s.first_name, s.last_name
+FROM students s
+INNER JOIN grades g ON s.student_id = g.student_id
+WHERE g.grade = (
+  SELECT MAX(grade) FROM grades
+);
+```
+
+#### Task 6/What is the name and email address of the student with the highest average grade?
+
+
+```sql
+SELECT students.first_name, students.last_name, students.email, AVG(grades.grade) AS avg_grade
+FROM students
+INNER JOIN grades ON students.student_id = grades.student_id
+GROUP BY students.student_id, students.first_name, students.last_name, students.email
+HAVING AVG(grades.grade) = (
+    SELECT MAX(avg_grade)
+    FROM (
+        SELECT AVG(grade) AS avg_grade
+        FROM grades
+        GROUP BY student_id
+    ) AS student_grades
+);
+```
+
+## Case 2:
 We'll make use of details regarding a publishing business that issues both translated and original works. `Books`,`Authors`, `Editors`, and `Translators` are the four tables in our database.
 
 - **`Books`**
@@ -104,7 +223,7 @@ FULL JOIN translators t
 ON b.translator_id = t.id
 ORDER BY b.id;
 ```
-## Case 2:
+## Case 3:
  We have the two tables below :
 
 - **`Customer `**
@@ -197,4 +316,4 @@ where o.date = "2021–01–30" and o.amount = (
 select min(amount) from orders where date = "2021–01–30"
  );
  ```
-## Case 3:
+
