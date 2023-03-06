@@ -51,7 +51,8 @@ We habe three tables below for a fictional school that tracks student grades:
 | 11             | 4     | 3       | 81      |
 | 12             | 5    | 4 | 95|
 
-The Students table contains information about the students enrolled in the school, including their unique ID, first name, last name, and email. The Courses table lists all the courses offered by the school and includes the course ID, name, and instructor ID. The Instructors table contains information about the instructors who teach at the school, including their unique ID, first name, last name, and email. Finally, the Grades table contains information about the grades earned by each student in each course, including the student ID, course ID, and actual grade earned.
+
+The `Students` table contains information about the students enrolled in the school, including their unique ID, first name, last name, and email. The `Courses` table lists all the courses offered by the school and includes the course ID, name, and instructor ID. The `Instructors` table contains information about the instructors who teach at the school, including their unique ID, first name, last name, and email. Finally, the `Grades` table contains information about the grades earned by each student in each course, including the student ID, course ID, and actual grade earned.
 
 
 #### Task 1/ What are the names of all students who are enrolled in "Mathematics" course?
