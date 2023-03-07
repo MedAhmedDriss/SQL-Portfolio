@@ -377,3 +377,104 @@ We have 4 tables  related to zoo management and contain information about the an
 | 7        | Gorilla Watching    | 2023-03-15 | 13:30:00 | 3            |
 | 8        | Kangaroo Jumping    | 2023-03-16 | 11:00:00 | 1            |
 | 9        | Crocodile Feeding   | 2023-03-17 | 10:30:00 | 5            |
+
+#### Task 1/ What is the total number of animals in each habitat, ordered by the habitat name?
+```sql
+SELECT h.habitat_name, COUNT(*) as num_animals 
+FROM Animals a
+JOIN Habitats h ON a.habitat_id = h.habitat_id
+GROUP BY h.habitat_name
+ORDER BY h.habitat_name;
+```
+| habitat_name       | num_animals |
+|--------------------|-------------|
+| Chimpanzee Habitat | 1           |
+| Crocodile Habitat  | 1           |
+| Elephant Habitat   | 1           |
+| Giraffe Habitat    | 1           |
+| Gorilla Habitat    | 1           |
+| Kangaroo Habitat   | 1           |
+| Lion Habitat       | 1           |
+| Penguin Habitat    | 2           |
+| Tiger Habitat      | 1           |
+
+
+#### Task 2/ What are the names and job titles of all the employees who have worked with elephants?
+```sql
+SELECT e.name, e.job_title 
+FROM Employees e
+JOIN Events ev ON e.employee_id = ev.employee_id
+JOIN Animals a ON ev.animal_id = a.animal_id
+WHERE a.species = 'Elephant';
+```
+| name             | job_title    |
+|------------------|--------------|
+| Ahmed Ben Salah  | Zookeeper    |
+| John Smith       | Zoologist    |
+
+#### Task 3/ What are the names of the animals and their habitats that will have an event on March 13, 2023?
+```sql
+SELECT a.name, h.habitat_name 
+FROM Events ev
+JOIN Animals a ON ev.animal_id = a.animal_id
+JOIN Habitats h ON a.habitat_id = h.habitat_id
+WHERE ev.date = '2023-03-13';
+```
+| name     | habitat_name  |
+|----------|---------------|
+| Skipper  | Penguin Habitat|
+
+#### Task 4/ Who is the employee with the most events?
+```sql
+SELECT e.name, COUNT(*) as num_events 
+FROM Events ev
+JOIN Employees e ON ev.employee_id = e.employee_id
+GROUP BY e.name
+ORDER BY num_events DESC
+LIMIT 1;
+```
+
+| name            | num_events |
+|-----------------|-------------|
+| Ahmed Ben Salah | 2           |
+
+#### Task 5/ Which animals are in habitats managed by employees with the job title "Zookeeper"?
+```sql
+SELECT a.name, h.habitat_name, e.name as employee_name
+FROM Animals a
+JOIN Habitats h ON a.habitat_id = h.habitat_id
+JOIN Employees e ON h.habitat_id = e.employee_id
+WHERE e.job_title = 'Zookeeper';
+```
+
+| name     | habitat_name     | employee_name      |
+|----------|-----------------|--------------------|
+| Simba    | Lion Habitat     | Ahmed Ben Salah    |
+| Rajah    | Tiger Habitat    | Adam Johnson       |
+| Dumbo    | Elephant Habitat | Ahmed Ben Salah    |
+| Melman   | Giraffe Habitat  | Adam Johnson       |
+| Skipper  | Penguin Habitat  | Adam Johnson       |
+| Joey     | Kangaroo Habitat | Ahmed Ben Salah    |
+| Wally    | Crocodile Habitat| Ahmed Ben Salah    |
+
+
+#### Task 6/ What is the total number of events organized by each employee, and how many of those events involved animals of a certain species? (Let's use the species "Penguin" as an example)
+```sql
+SELECT e.name, COUNT(DISTINCT ev.event_id) AS total_events, 
+       COUNT(DISTINCT CASE WHEN a.species = 'Penguin' THEN ev.event_id ELSE NULL END) AS penguin_events
+FROM Employees e
+JOIN Events ev ON e.employee_id = ev.employee_id
+LEFT JOIN Event_Animals ea ON ev.event_id = ea.event_id
+LEFT JOIN Animals a ON ea.animal_id = a.animal_id
+GROUP BY e.name;
+```
+| name             | total_events | penguin_events |
+|------------------|--------------|-----------------|
+| Ahmed Ben Salah  | 4            | 0               |
+| Amel Kefi        | 0            | 0               |
+| John Smith       | 0            | 0               |
+| Aya Nakamura     | 0            | 0               |
+| Adam Johnson     | 2            | 1               |
+| Kim Lee          | 0            | 0               |
+| Mohammed Ali     | 0            | 0               |
+
