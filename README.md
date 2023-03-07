@@ -318,3 +318,62 @@ select min(amount) from orders where date = "2021–01–30"
  );
  ```
 
+## Case 4:
+
+We have 4 tables  related to zoo management and contain information about the animals, habitats, employees, and events in the zoo. The `Animals` table stores information about the species, name, gender, birth date, and habitat of each animal. The `Habitats` table contains information about the different habitats in the zoo. The `Employees` table stores information about the zoo staff, including their ID, first name, last name, and job title. Finally, the `Events` table tracks the events happening at the zoo, including the event ID, name, date, time, and the employee responsible for the event. 
+
+
+### Animals Table
+
+| animal_id | species     | name     | gender | birth_date | habitat_id |
+|-----------|-------------|----------|--------|------------|------------|
+| 1         | Lion        | Simba    | M      | 2010-05-15 | 1          |
+| 2         | Tiger       | Rajah    | M      | 2012-08-22 | 2          |
+| 3         | Elephant    | Dumbo    | M      | 2009-02-28 | 3          |
+| 4         | Giraffe     | Melman   | M      | 2011-11-10 | 4          |
+| 5         | Penguin     | Skipper  | F      | 2015-03-05 | 5          |
+| 6         | Chimpanzee  | Caesar   | M      | 2014-01-01 | 6          |
+| 7         | Gorilla     | King Kong| M      | 2007-06-18 | 7          |
+| 8         | Flamingo    | Pinky    | F      | 2016-07-03 | 5          |
+| 9         | Kangaroo    | Joey     | M      | 2013-04-20 | 8          |
+| 10        | Crocodile   | Wally    | M      | 2010-09-12 | 9          |
+
+### Habitats Table
+
+| habitat_id | habitat_name        |
+|------------|---------------------|
+| 1          | Lion Habitat        |
+| 2          | Tiger Habitat       |
+| 3          | Elephant Habitat    |
+| 4          | Giraffe Habitat     |
+| 5          | Penguin Habitat     |
+| 6          | Chimpanzee Habitat  |
+| 7          | Gorilla Habitat     |
+| 8          | Kangaroo Habitat    |
+| 9          | Crocodile Habitat   |
+
+### Employees Table
+
+| employee_id | name             | job_title   |
+|-------------|----------------|-------------|
+| 1           | Ahmed Ben Salah | Zookeeper   |
+| 2           | Amel Kefi       | Veterinarian|
+| 3           | John Smith      | Zoologist   |
+| 4           | Aya Nakamura    | Zookeeper   |
+| 5           | Adam Johnson    | Zookeeper   |
+| 6           | Kim Lee         | Veterinarian|
+| 7           | Mohammed Ali    | Zoologist   |
+
+### Events Table
+
+| event_id | name                 | date       | time     | employee_id |
+|----------|----------------------|------------|----------|--------------|
+| 1        | Lion Feeding        | 2023-03-09 | 10:00:00 | 1            |
+| 2        | Tiger Show          | 2023-03-10 | 14:00:00 | 3            |
+| 3        | Elephant Bathing    | 2023-03-11 | 11:00:00 | 4            |
+| 4        | Giraffe Feeding     | 2023-03-12 | 10:30:00 | 2            |
+| 5        | Penguin March       | 2023-03-13 | 15:00:00 | 5            |
+| 6        | Chimpanzee Exhibit  | 2023-03-14 | 12:00:00 | 7            |
+| 7        | Gorilla Watching    | 2023-03-15 | 13:30:00 | 3            |
+| 8        | Kangaroo Jumping    | 2023-03-16 | 11:00:00 | 1            |
+| 9        | Crocodile Feeding   | 2023-03-17 | 10:30:00 | 5            |
