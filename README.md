@@ -398,8 +398,25 @@ ORDER BY h.habitat_name;
 | Penguin Habitat    | 2           |
 | Tiger Habitat      | 1           |
 
+#### Task 2/What is the number of events for each employee?
+```sql
+SELECT e.name AS employee_name, COUNT(*) AS event_count
+FROM Events ev
+JOIN Employees e ON ev.employee_id = e.employee_id
+GROUP BY e.name;
+```
+| employee_name       | event_count |
+|--------------------|-------------|
+| Adam Johnson	 | 2           |
+| Ahmed Ben Salah | 1           |
+| Amel Kefi   | 1           |
+| Aya Nakamura   | 2          |
+| John Smith  | 1           |
+| Kim Lee  | 1           |
+| Mohammed Ali   | 2           |
 
-#### Task 2/ What are the names and job titles of all the employees who have worked with elephants?
+
+#### Task 3/ What are the names and job titles of all the employees who have worked with elephants?
 ```sql
 SELECT e.name, e.job_title 
 FROM Employees e
@@ -412,7 +429,7 @@ WHERE a.species = 'Elephant';
 | Ahmed Ben Salah  | Zookeeper    |
 | John Smith       | Zoologist    |
 
-#### Task 3/ What are the names of the animals and their habitats that will have an event on March 13, 2023?
+#### Task 4/ What are the names of the animals and their habitats that will have an event on March 13, 2023?
 ```sql
 SELECT a.name, h.habitat_name 
 FROM Events ev
@@ -424,7 +441,7 @@ WHERE ev.date = '2023-03-13';
 |----------|---------------|
 | Skipper  | Penguin Habitat|
 
-#### Task 4/ Who is the employee with the most events?
+#### Task 5/ Who is the employee with the most events?
 ```sql
 SELECT e.name, COUNT(*) as num_events 
 FROM Events ev
@@ -438,7 +455,7 @@ LIMIT 1;
 |-----------------|-------------|
 | Ahmed Ben Salah | 2           |
 
-#### Task 5/ Which animals are in habitats managed by employees with the job title "Zookeeper"?
+#### Task 6/ Which animals are in habitats managed by employees with the job title "Zookeeper"?
 ```sql
 SELECT a.name, h.habitat_name, e.name as employee_name
 FROM Animals a
@@ -458,7 +475,7 @@ WHERE e.job_title = 'Zookeeper';
 | Wally    | Crocodile Habitat| Ahmed Ben Salah    |
 
 
-#### Task 6/ What is the total number of events organized by each employee, and how many of those events involved animals of a certain species? (Let's use the species "Penguin" as an example)
+#### Task 7/ What is the total number of events organized by each employee, and how many of those events involved animals of a certain species? (Let's use the species "Penguin" as an example)
 ```sql
 SELECT e.name, COUNT(DISTINCT ev.event_id) AS total_events, 
        COUNT(DISTINCT CASE WHEN a.species = 'Penguin' THEN ev.event_id ELSE NULL END) AS penguin_events
