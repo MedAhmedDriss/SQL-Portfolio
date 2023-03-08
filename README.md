@@ -6,7 +6,7 @@
 
 We habe three tables below for a fictional school that tracks student grades:
 
-### students
+- **`students`**
 
 | student_id | first_name | last_name   | email                       |
 |------------|------------|-------------|-----------------------------|
@@ -18,7 +18,7 @@ We habe three tables below for a fictional school that tracks student grades:
 | 6          | Mohamed    | Ben Ali     | mohamed.benali@esprix.com  |
 | 7          | Asma       | Saadi       | asma.saadi@esprix.com      |
 
-### courses
+-**`courses`**
 
 | course_id | course_name | instructor_id |
 |-----------|-------------|---------------|
@@ -26,7 +26,7 @@ We habe three tables below for a fictional school that tracks student grades:
 | 2         | English 101 | 2             |
 | 3         | History 101 | 3             |
 
-### instructors
+-**` instructors`**
 
 | instructor_id | first_name | last_name    | email                        |
 |---------------|------------|--------------|------------------------------|
@@ -34,7 +34,7 @@ We habe three tables below for a fictional school that tracks student grades:
 | 2             | Zainab     | Fehmi        | zainab.fehmi@esprix.com      |
 | 3             | Youssef    | Bel Haj Amor | youssef.belhajamor@esprix.com|
 
-### instructors
+-**` instructors`**
 
 | enrollment_id | student_id | course_id    | grade                        |
 |---------------|------------|--------------|------------------------------|
@@ -227,7 +227,7 @@ ORDER BY b.id;
 ## Case 3:
  We have the two tables below :
 
-- **`Customer `**
+- **`Customer`**
 
 | customer_id  | age | location  | gender|
 | :------------- | :------------- | :------------- |  :------------- | 
@@ -240,7 +240,7 @@ ORDER BY b.id;
 | 201  |37  | Monastir  |Female  |
  
  
- - **`Order `**
+ - **`Order`**
  
  | order_id  | customer_id | date  | amount| is_sale |
 | :------------- | :------------- | :------------- |  :------------- | :------------- | 
@@ -323,7 +323,7 @@ select min(amount) from orders where date = "2021–01–30"
 We have 4 tables  related to zoo management and contain information about the animals, habitats, employees, and events in the zoo. The `Animals` table stores information about the species, name, gender, birth date, and habitat of each animal. The `Habitats` table contains information about the different habitats in the zoo. The `Employees` table stores information about the zoo staff, including their ID, first name, last name, and job title. Finally, the `Events` table tracks the events happening at the zoo, including the event ID, name, date, time, and the employee responsible for the event. 
 
 
-### Animals Table
+- **` Animals Table`**
 
 | animal_id | species     | name     | gender | birth_date | habitat_id |
 |-----------|-------------|----------|--------|------------|------------|
@@ -338,7 +338,7 @@ We have 4 tables  related to zoo management and contain information about the an
 | 9         | Kangaroo    | Joey     | M      | 2013-04-20 | 8          |
 | 10        | Crocodile   | Wally    | M      | 2010-09-12 | 9          |
 
-### Habitats Table
+- **` Habitats Table`**
 
 | habitat_id | habitat_name        |
 |------------|---------------------|
@@ -352,7 +352,7 @@ We have 4 tables  related to zoo management and contain information about the an
 | 8          | Kangaroo Habitat    |
 | 9          | Crocodile Habitat   |
 
-### Employees Table
+- **` Employees Table`**
 
 | employee_id | name             | job_title   |
 |-------------|----------------|-------------|
@@ -364,7 +364,7 @@ We have 4 tables  related to zoo management and contain information about the an
 | 6           | Kim Lee         | Veterinarian|
 | 7           | Mohammed Ali    | Zoologist   |
 
-### Events Table
+- **` Events Table`**
 
 | event_id | name                 | date       | time     | employee_id |
 |----------|----------------------|------------|----------|--------------|
@@ -495,3 +495,122 @@ GROUP BY e.name;
 | Kim Lee          | 0            | 0               |
 | Mohammed Ali     | 0            | 0               |
 
+## Case 5:
+
+We have three tables :  The `Customers` table contains customer information such as name, email, and phone number, and is linked to the `Companies` table which contains company information such as name and industry. The `Deals` table tracks deals and their associated customers and companies, deal stage, value, and creation date. These tables provide a complete view of the customers and companies a business is interacting with and the deals they are pursuing.
+
+- **` Customer`**
+
+|Customer ID|	Name|	Email|	Phone|
+|------------------|--------------|----------|-------|
+|1|	Fatma Ben Ali|	fatma.ben.ali@hotmail.com|	+216 20 000 000|
+|2|	Amira Khelifi|	amira.khelifi@hotmail.com|	+216 71 000 000|
+|3|	Mohamed Ben Salah|	mohamed.ben.salah@hotmail.com|	+216 98 000 000|
+|4|	Ahmed Bouazizi|	ahmed.bouazizi@hotmail.com|	+216 50 000 000|
+|5|	Salma Ben Ammar|	salma.ben.ammar@hotmail.com|	+216 27 000 000|
+
+- **` Companies`**
+|Company ID	|Name|	Industry|
+|------------------|--------------|----------|
+|1	|Groupe Chimique Tunisien|	Chemicals|
+|2	|Tunisie Télécom|	Telecommunications|
+|3	|STEG	|Utilities|
+|4|	BIAT	|Banking|
+
+- **` Deals`**
+|Deal ID|	Customer ID|	Company ID|	Deal Stage|	Value|	Creation Date|
+|------|--------------|----------|------------------|--------------|----------|
+|1	|1	|1	|Negotiation	|10000 TND	|2022-01-01|
+|2	|2|	2	|Closed	|25000 TND	|2022-02-15|
+|3	|3	|3	|Proposal	|50000 TND	|2022-03-20|
+|4|	4|	1	|Qualified	|15000 TND	|2022-04-12|
+|5	|5|	4	|Negotiation	|30000 TND	|2022-05-10|
+
+
+
+#### Task 1/Which customers have deals worth more than 20000 TND?
+
+```sql
+SELECT c.Name
+FROM Customers c
+INNER JOIN Deals d ON c.`Customer ID` = d.`Customer ID`
+WHERE d.Value > 20000;
+```
+| Name             |
+|------------------|
+| Amira Khelifi    |
+| Mohamed Ben Salah |
+| Salma Ben Ammar  |
+
+#### Task 2/How many deals does each company have in each stage?
+```sql
+SELECT c.Name, d.`Deal Stage`, COUNT(*)
+FROM Companies c
+INNER JOIN Deals d ON c.`Company ID` = d.`Company ID`
+GROUP BY c.Name, d.`Deal Stage`;
+
+```
+| Name                  | Deal Stage   | COUNT(*) |
+|-----------------------|--------------|----------|
+| BIAT                  | Qualified   | 1        |
+| Groupe Chimique Tunisien | Negotiation | 2        |
+| Groupe Chimique Tunisien | Qualified   | 1        |
+| STEG                  | Proposal    | 1        |
+| Tunisie Télécom          | Closed      | 1        |
+
+#### Task 3/Which customers have deals with more than one company?
+```sql
+SELECT c1.Name
+FROM Customers c1
+INNER JOIN (
+    SELECT `Customer ID`, COUNT(DISTINCT `Company ID`) AS num_companies
+    FROM Deals
+    GROUP BY `Customer ID`
+) c2 ON c1.`Customer ID` = c2.`Customer ID`
+WHERE c2.num_companies > 1;
+```
+
+| Name             |
+|------------------|
+| Fatma Ben Ali    |
+| Salma Ben Ammar  |
+
+#### Task 4/What is the average deal value for each industry?
+```sql
+SELECT c.Industry, AVG(d.Value)
+FROM Companies c
+INNER JOIN Deals d ON c.`Company ID` = d.`Company ID`
+GROUP BY c.Industry;
+```
+| Industry         | AVG(d.Value) |
+|------------------|---------------|
+| Banking          | 15000.00 TND |
+| Chemicals        | 12500.00 TND |
+| Telecommunications | 25000.00 TND |
+| Utilities        | 50000.00 TND |
+
+#### Task 5/Which customers have not been associated with any deals?
+```sql
+SELECT c.Name
+FROM Customers c
+LEFT JOIN Deals d ON c.`Customer ID` = d.`Customer ID`
+WHERE d.`Deal ID` IS NULL;
+```
+
+| Name        |
+|-------------|
+| Ali Ben Ali |
+
+#### Task 6/What is the total value of deals for each company in the "Proposal" stage?
+```sql
+SELECT c.Name, SUM(d.Value)
+FROM Companies c
+INNER JOIN Deals d ON c.`Company ID` = d.`Company ID`
+WHERE d.`Deal Stage` = 'Proposal'
+GROUP BY c.Name;
+```
+
+| Name                  | SUM(d.Value) |
+|-----------------------|---------------|
+| Groupe Chimique Tunisien | 5000.00 TND  |
+| STEG                  | 10000.00 TND |
