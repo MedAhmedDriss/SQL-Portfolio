@@ -510,14 +510,16 @@ We have three tables :  The `Customers` table contains customer information such
 |5|	Salma Ben Ammar|	salma.ben.ammar@hotmail.com|	+216 27 000 000|
 
 - **` Companies`**
+
 |Company ID	|Name|	Industry|
-|------------------|--------------|----------|
-|1	|Groupe Chimique Tunisien|	Chemicals|
-|2	|Tunisie Télécom|	Telecommunications|
-|3	|STEG	|Utilities|
-|4|	BIAT	|Banking|
+|-----------|--- |--------|
+|1|Groupe Chimique Tunisien|	Chemicals|
+|2|Tunisie Télécom|	Telecommunications|
+|3|STEG	|Utilities|
+|4|BIAT	|Banking|
 
 - **` Deals`**
+
 |Deal ID|	Customer ID|	Company ID|	Deal Stage|	Value|	Creation Date|
 |------|--------------|----------|------------------|--------------|----------|
 |1	|1	|1	|Negotiation	|10000 TND	|2022-01-01|
