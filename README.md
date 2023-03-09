@@ -687,7 +687,7 @@ WHERE customers.address LIKE '%Sfax%';
 ```
 |   avg_price |    
 | ------------------| 
-|  22509.3750000000| 
+|  22509.375| 
 
 #### Task 3/Who is the top-performing salesperson in terms of revenue generated in 2022?
 
@@ -719,7 +719,7 @@ WHERE customers.email LIKE '%gmail.com%';
 
 |     avg_price  |    
 |--------------------|
-| 18544.444444444445|
+| 18544.45|
 
 
 #### Task 5/Which customer(s) has/have purchased the most expensive car(s)?
