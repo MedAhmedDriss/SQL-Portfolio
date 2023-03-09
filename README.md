@@ -616,3 +616,124 @@ GROUP BY c.Name;
 |-----------------------|---------------|
 | Groupe Chimique Tunisien | 5000.00 TND  |
 | STEG                  | 10000.00 TND |
+
+
+## Case 6:
+
+Working for a manager at a car dealership , looking to improve the company's sales and customer satisfaction. To achieve this, we need to analyze the data related to car sales and customer interactions. We have access to four tables that contain the necessary information for the analysis: `customers`, `cars`, `sales`, and `salespeople`. 
+The `customers` table includes details about the customers who have purchased cars from the dealership, while the `cars` table provides information about the cars available for sale. The `sales` table records the details of each car sale, including the customer who purchased the car and the sale amount. Lastly, the `salespeople` table contains information about the salespeople who work at the dealership.
+
+- **` Customer`**
+
+|customer_id|	name|	address|	phone|	email|
+|-----------|-----|--------|------|----------|
+|1|	Ahmed Ben Ali|	123 Rue de la Paix, Tunis|	+216 71 123 456|	ahmed.benali@gmail.com|
+|2|	Fatima Khaldi|	456 Avenue Habib Bourguiba, Sfax|	+216 74 987 654|	fatima.khaldi@yahoo.com|
+|3|	Mohamed Belhaj|	789 Rue du Lac, Tunis|	+216 71 555 444|	mohamed.belhaj@outlook.tn|
+|4|	Amina Chaker|	987 Boulevard du 7 Novembre, Sousse|	+216 73 111 222|	amina.chaker@hotmail.com|
+|5|	Mehdi Ben Youssef|	111 Rue de l'Indépendance, Tunis|	+216 71 777 888|	mehdi.byoussef@gmail.com|
+
+- **` Cars`**
+
+|car_id|	make|	model|	year|	color|	price|
+|------|-----|-----|--------|------|----------|
+|1|	Renault	|Clio	|2019	|Blue	|12000|
+|2|	Volkswagen|	Golf|	2018|	Silver|	15000|
+|3|	Peugeot	|208	|2020	|Red	|14000|
+|4|	Toyota	|Yaris |Hybrid	|2019|	White|	17000|
+|5|	Honda|	Civic	|2021|	Black	|25000|
+
+- **` Sales`**
+
+|sale_id|	customer_id|	car_id	|sale_date|	sale_amount|
+|------|----------|--------|------|----------|
+|1|	1|	1|	2022-01-05|	10000|
+|2|	2	|3	|2022-02-12	|12000|
+|3|	3	|4	|2022-03-07	|16000|
+|4|	4	|5	|2022-04-23	|22000|
+|5|	5	|2	|2022-05-15	|14000|
+
+- **` Salespeople`**
+
+
+|salesperson_id|	name	phone|	email|
+|--------------|----------|--------|
+|1|	Nizar Ben Salah	|+216 71 555 333	|nizar.bensalah@outlook.tn|
+|2|	Rim Bouhlel	|+216 71 444 555	|rim.bouhlel@gmail.com|
+|3|	Anis Jomaa	|+216 71 222 333	|anis.jomaa@gmail.com|
+
+
+#### Task 1/What is the total revenue generated from car sales in 2022?
+
+```sql
+SELECT SUM(sale_amount) as total_revenue 
+FROM sales 
+WHERE sale_date >= '2022-01-01' AND sale_date < '2023-01-01';
+```
+|total_revenue|
+|---------------|
+|       98100.0|
+
+#### Task 2/What is the average price of cars sold in Sfax?
+
+```sql
+SELECT AVG(price) as avg_price
+FROM cars
+INNER JOIN sales
+ON cars.car_id = sales.car_id
+INNER JOIN customers
+ON sales.customer_id = customers.customer_id
+WHERE customers.address LIKE '%Sfax%';
+```
+|   avg_price |    
+| ------------------| 
+|  22509.3750000000| 
+
+#### Task 3/Who is the top-performing salesperson in terms of revenue generated in 2022?
+
+```sql
+SELECT salespeople.name as salesperson, SUM(sales.sale_amount) as revenue
+FROM salespeople
+INNER JOIN sales
+ON salespeople.salesperson_id = sales.salesperson_id
+WHERE sales.sale_date >= '2022-01-01' AND sales.sale_date < '2023-01-01'
+GROUP BY salespeople.name
+ORDER BY revenue DESC
+LIMIT 1;
+```
+|salesperson | revenue| 
+|-------------|---------|
+ |Rim Bouhlel  | 56800.0|
+
+#### Task 4/What is the average price of cars sold to customers with Gmail accounts?
+
+```sql
+SELECT AVG(cars.price) as avg_price
+FROM cars
+INNER JOIN sales
+ON cars.car_id = sales.car_id
+INNER JOIN customers
+ON sales.customer_id = customers.customer_id
+WHERE customers.email LIKE '%gmail.com%';
+```
+
+|     avg_price  |    
+|--------------------|
+| 18544.444444444445|
+
+
+#### Task 5/Which customer(s) has/have purchased the most expensive car(s)?
+
+```sql
+SELECT customers.name, cars.make, cars.model, cars.price
+FROM customers
+INNER JOIN sales
+ON customers.customer_id = sales.customer_id
+INNER JOIN cars
+ON sales.car_id = cars.car_id
+WHERE cars.price = (SELECT MAX(price) FROM cars)
+```
+
+|      name       |  make  |     model     | price  |
+|-----------------|--------|---------------|--------|
+| Mohamed Ben Ali | Toyota | Land Cruiser | 40000.0|
