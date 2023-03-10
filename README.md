@@ -768,6 +768,162 @@ WHERE cars.price = (SELECT MAX(price) FROM cars)
 
 </details>
 
-## Case 7 : 
+## Case 7 :  Pharmacy
 <details>
   <summary>Click to expand</summary>
+  
+  The pharmacy database consists of four tables: `Patients`, `Prescriptions`, `Medications`, and `Doctors`. The `Patients` table stores information about patients such as their name, address, and date of birth. The `Prescriptions` table contains information about the medications prescribed to each patient including dosage, frequency, and start/end dates. The `Medications` table contains information about the medications available at the pharmacy including name, description, and price. Finally, the `Doctors` table stores information about doctors who prescribe medications, including their name, specialty, and contact information. Together, these tables form the basis of the pharmacy's data management system, which enables the pharmacy to keep track of patient information, medications prescribed, and doctors who prescribe them.
+  
+  - **` Patients`**
+  
+  |patient_id|	name|	address|	date_of_birth|
+  |-----------|-----|--------|---------------|
+|1	|Mohamed Ben Ali	|123 Main St, Tunis	|1990-05-10|
+|2	|Fatima Haddad	|456 Elm St, Sfax	|1985-12-25|
+|3	|Karim Zouari	|789 Maple Ave, Tunis	|1995-07-01|
+|4	|Amira Khemiri	|456 Pine St, Sousse	|1980-03-15|
+  
+  - **` Prescriptions`**
+  
+|prescription_id|	patient_id|	medication_id|	dosage|	frequency|	start_date|	end_date|
+|-----------|-----------------|------------|--------|-------|------------|-------|
+|1	|1	|1	|50mg|	Once a day|	2022-02-01|	2022-03-01|
+|2	|2	|2	|100mg	|Twice a day	|2022-02-15	|2022-03-15|
+|3	|3	|3	|25mg|	Three times a day|	2022-02-10|	2022-03-10|
+|4	|4	|4	|75mg	|Once a day	|2022-02-20	|2022-03-20|
+  
+  - **` Medications`**
+  
+|medication_id|	name|	description|	price|
+|--------|-------|------------|-------|
+|1|	Ibuprofen	|A nonsteroidal anti-inflammatory drug	|10|
+|2|	Amoxicillin|	An antibiotic used to treat bacterialinfections	|15|
+|3|	Prozac	|An antidepressant	|20|
+|4|	Lipitor	|A medication used to lower cholesterol levels	|25|
+  
+  - **` Doctors`**
+  
+|doctor_id|	name|	specialty|	contact_number|
+|--------|-------|------------|-------|
+|1|	Dr. Ali Ben Salem	|Cardiologist	|555-1234|
+|2|	Dr. Omar Chakroun	|Endocrinologist	|555-5678|
+|3|	Dr. Amina Bouzidi	|Neurologist	|555-9012|
+|4|	Dr. Ahmed Jomaa	|Oncologist	|555-3456|
+  
+#### Task 1/What are the details of all patients with a prescription that ends before March 15th, 2022?
+```sql
+SELECT p.*
+FROM Patients p
+JOIN Prescriptions r ON p.patient_id = r.patient_id
+WHERE r.end_date < '2022-03-15';
+```
+
+|      patient_id       |  name  |     address     | date_of_birth  |
+|-----------------|--------|---------------|--------|
+| 1 |  Mohamed Ben Ali  | 123 Main St, Tunis| 1990-05-10|
+| 2  |  Fatima Haddad  | 456 Elm St, Sfax | 1985-12-25|  
+  
+  
+#### Task 2/What is the total price of all medications prescribed to each patient?
+
+```sql
+SELECT Patients.patient_id, Patients.name, SUM(Medications.price) AS total_price
+FROM Patients
+JOIN Prescriptions ON Patients.patient_id = Prescriptions.patient_id
+JOIN Medications ON Prescriptions.medication_id = Medications.medication_id
+GROUP BY Patients.patient_id;
+```
+
+|patient_id | name| total_price|
+|-----------|-----|-----------|
+|1| Mohamed Ben Ali |10|
+|2| Fatima Haddad   |15|
+|3| Karim Zouari    |20|
+|4| Amira Khemiri   |25|
+                    
+#### Task 3/Which medications have been prescribed to patients by more than one doctor?
+
+```sql
+SELECT m.name AS medication_name, COUNT(DISTINCT p.doctor_id) AS num_doctors_prescribed
+FROM medications m
+INNER JOIN prescriptions pr ON m.medication_id = pr.medication_id
+INNER JOIN patients p ON pr.patient_id = p.patient_id
+GROUP BY m.name
+HAVING COUNT(DISTINCT p.doctor_id) > 1;
+```
+
+|medication_name  | num_doctors_prescribed|
+|----------------|-----------------------|
+|Ibuprofen        | 2|             
+  
+
+#### Task 4/What is the average number of prescriptions per patient?
+
+
+```sql
+SELECT AVG(num_prescriptions) AS avg_prescriptions_per_patient
+FROM (
+  SELECT patient_id, COUNT(*) AS num_prescriptions
+  FROM prescriptions
+  GROUP BY patient_id
+) subquery;
+```
+|avg_prescriptions_per_patient|
+|------------------------------|
+|                          1.0|
+
+#### Task 5/Which doctor has prescribed the most medications?
+
+
+```sql
+SELECT d.name AS doctor_name, COUNT(*) AS num_prescriptions
+FROM doctors d
+INNER JOIN prescriptions p ON d.doctor_id = p.doctor_id
+GROUP BY d.name
+ORDER BY num_prescriptions DESC
+LIMIT 1;
+
+
+```
+
+|doctor_name      | num_prescriptions|
+|-----------------|------------------|
+|Dr. Omar Chakroun |                 2|
+  
+#### Task 6/What is the total price of all medications prescribed by each doctor?
+
+
+```sql
+SELECT d.name AS doctor_name, SUM(m.price) AS total_price
+FROM doctors d
+JOIN prescriptions p ON d.doctor_id = p.doctor_id
+JOIN medications m ON p.medication_id = m.medication_id
+GROUP BY d.doctor_id;
+```
+
+|doctor_name           | total_price|
+|----------------------|-------------|
+|Dr. Ali Ben Salem     | 10|
+|Dr. Omar Chakroun     | 55|
+|Dr. Amina Bouzidi     | 20|
+|Dr. Ahmed Jomaa       | 75|
+
+#### Task 7/What is the average price of medications prescribed by each doctor for patients older than 30 years old??
+  
+```sql
+SELECT d.name AS doctor_name, AVG(m.price) AS avg_price
+FROM doctors d
+JOIN prescriptions p ON d.doctor_id = p.doctor_id
+JOIN medications m ON p.medication_id = m.medication_id
+JOIN patients pt ON p.patient_id = pt.patient_id
+WHERE pt.date_of_birth < '1992-03-10'
+GROUP BY d.doctor_id;
+```
+|doctor_name           | avg_price|
+|----------------------|-----------|
+|Dr. Omar Chakroun     | 15|
+|Dr. Amina Bouzidi     | 20|
+|Dr. Ahmed Jomaa       | 25|
+
+                    
+  </details>
