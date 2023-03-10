@@ -1,8 +1,11 @@
 # SQL-Portfolio
-#### Data analysis tasks made using SQL 
-#### This different data analysis case study resolved using SQL language 
 
-## Case 1:
+#### These are  different data analysis cases  resolved using SQL language 
+
+## Case 1: Fictional school
+
+<details>
+  <summary>Click to expand</summary>
 
 We habe three tables below for a fictional school that tracks student grades:
 
@@ -121,8 +124,13 @@ HAVING AVG(grades.grade) = (
     ) AS student_grades
 );
 ```
+</details>
 
-## Case 2:
+## Case 2: Translated and original works
+
+<details>
+  <summary>Click to expand</summary>
+
 We'll make use of details regarding a publishing business that issues both translated and original works. `Books`,`Authors`, `Editors`, and `Translators` are the four tables in our database.
 
 - **`Books`**
@@ -224,7 +232,14 @@ FULL JOIN translators t
 ON b.translator_id = t.id
 ORDER BY b.id;
 ```
-## Case 3:
+</details>
+
+
+## Case 3: Customers/orders
+
+<details>
+  <summary>Click to expand</summary>
+
  We have the two tables below :
 
 - **`Customer`**
@@ -317,8 +332,12 @@ where o.date = "2021–01–30" and o.amount = (
 select min(amount) from orders where date = "2021–01–30"
  );
  ```
+</details>
 
-## Case 4:
+## Case 4: Zoo management
+
+<details>
+  <summary>Click to expand</summary>
 
 We have 4 tables  related to zoo management and contain information about the animals, habitats, employees, and events in the zoo. The `Animals` table stores information about the species, name, gender, birth date, and habitat of each animal. The `Habitats` table contains information about the different habitats in the zoo. The `Employees` table stores information about the zoo staff, including their ID, first name, last name, and job title. Finally, the `Events` table tracks the events happening at the zoo, including the event ID, name, date, time, and the employee responsible for the event. 
 
@@ -495,7 +514,12 @@ GROUP BY e.name;
 | Kim Lee          | 0            | 0               |
 | Mohammed Ali     | 0            | 0               |
 
-## Case 5:
+</details>
+
+## Case 5: Customers / companies
+
+<details>
+  <summary>Click to expand</summary>
 
 We have three tables :  The `Customers` table contains customer information such as name, email, and phone number, and is linked to the `Companies` table which contains company information such as name and industry. The `Deals` table tracks deals and their associated customers and companies, deal stage, value, and creation date. These tables provide a complete view of the customers and companies a business is interacting with and the deals they are pursuing.
 
@@ -617,9 +641,13 @@ GROUP BY c.Name;
 | Groupe Chimique Tunisien | 5000.00 TND  |
 | STEG                  | 10000.00 TND |
 
+</details>
 
-## Case 6:
+## Case 6: Car dealer management
 
+<details>
+  <summary>Click to expand</summary>
+  
 Working for a manager at a car dealership , looking to improve the company's sales and customer satisfaction. To achieve this, we need to analyze the data related to car sales and customer interactions. We have access to four tables that contain the necessary information for the analysis: `customers`, `cars`, `sales`, and `salespeople`. 
 The `customers` table includes details about the customers who have purchased cars from the dealership, while the `cars` table provides information about the cars available for sale. The `sales` table records the details of each car sale, including the customer who purchased the car and the sale amount. Lastly, the `salespeople` table contains information about the salespeople who work at the dealership.
 
@@ -737,3 +765,9 @@ WHERE cars.price = (SELECT MAX(price) FROM cars)
 |      name       |  make  |     model     | price  |
 |-----------------|--------|---------------|--------|
 | Mohamed Ben Ali | Toyota | Land Cruiser | 40000.0|
+
+</details>
+
+## Case 7 : 
+<details>
+  <summary>Click to expand</summary>
