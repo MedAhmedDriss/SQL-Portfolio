@@ -937,6 +937,7 @@ GROUP BY d.doctor_id;
   TV shows have become an integral part of our lives.They have a massive following and viewership worldwide.In this case,we have four tables:`TV_Shows`, `Episodes`, Cast, and Ratings. `TV_Shows` table contains information about all the TV shows including the title, genre, year, and rating. `Episodes` table contains details of all the episodes of TV shows such as the title, season, episode number, and the ID of the TV show it belongs to. `Cast` table includes the details of all the actors in TV shows including their name, gender, age, and nationality. `Ratings` table stores the ratings given by users to TV shows with the ID of the TV show and the rating provided.
   
   - **` TV_Shows`**
+  
 |id | title | genre | year | rating|
 |---|-------|-------|------|-------|
 |1 | Breaking Bad | Drama | 2008 | 9.5|
@@ -1071,20 +1072,39 @@ GROUP BY t.title;
 |The Office	|201|
 |Stranger Things	|25|
 
-#### Task 5/What is the total number of episodes for each TV show?
+#### Task 6/What is the total number of episodes for each TV show?
 
 ```sql
-SELECT t.title, COUNT(*) AS total_episodes
+SELECT t.title, e.title AS episode_title, e.rating
 FROM TV_Shows t
 JOIN Episodes e ON t.id = e.tv_show_id
-GROUP BY t.title;
+WHERE e.rating > (SELECT AVG(rating) FROM Episodes) 
+ORDER BY t.title, e.rating DESC;
 ```
-|title	|total_episodes|
-|--------|------------|
-|Breaking Bad|	62|
-|Game of Thrones	|73|
-|Friends|	236|
-|The Office	|201|
-|Stranger Things	|25|
+|title|	episode_title|	rating|
+|-----|--------------|--------|
+|Breaking Bad|	Felina	|9.9|
+|Friends|	The One Where Everybody Finds Out|	9.8|
+|Friends|	The One with the Embryos	|9.5|
+|Game of Thrones|	The Winds of Winter	|9.9|
+|The Office|	Goodbye, Michael	|9.8|
+|The Office|	Stress Relief	|9.7|
+
+#### Task 7/What is the total number of episodes for each TV show?
+
+```sql
+SELECT name, COUNT(*) AS comedy_shows
+FROM Cast c
+JOIN TV_Shows t ON c.tv_show_id = t.id
+WHERE t.genre = "Comedy"
+GROUP BY name
+HAVING comedy_shows >= 2;
+```
+|name	|comedy_shows|
+|-----|-------------|
+|Courteney Cox	|2|
+|Jennifer Aniston	|2|
+|Lisa Kudrow	|2|
+|Matt LeBlanc	|2|
 
 </details>
