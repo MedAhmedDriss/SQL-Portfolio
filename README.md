@@ -927,3 +927,164 @@ GROUP BY d.doctor_id;
 
                     
   </details>
+
+
+## Case 8: TV shows
+
+<details>
+  <summary>Click to expand</summary>
+  
+  TV shows have become an integral part of our lives.They have a massive following and viewership worldwide.In this case,we have four tables:`TV_Shows`, `Episodes`, Cast, and Ratings. `TV_Shows` table contains information about all the TV shows including the title, genre, year, and rating. `Episodes` table contains details of all the episodes of TV shows such as the title, season, episode number, and the ID of the TV show it belongs to. `Cast` table includes the details of all the actors in TV shows including their name, gender, age, and nationality. `Ratings` table stores the ratings given by users to TV shows with the ID of the TV show and the rating provided.
+  
+  - **` TV_Shows`**
+|id | title | genre | year | rating|
+|---|-------|-------|------|-------|
+|1 | Breaking Bad | Drama | 2008 | 9.5|
+|2 | Game of Thrones | Fantasy | 2011 | 9.3|
+|3 | Friends | Comedy | 1994 | 8.9|
+|4 | The Office | Comedy | 2005 | 8.9|
+|5 | Stranger Things | Sci-Fi/Horror | 2016 | 8.7|
+|6 | The Crown | Drama | 2016 | 8.7|
+|7 | The Sopranos | Drama | 1999 | 9.2|
+|8 | Narcos | Crime/Drama | 2015 | 8.8|
+|9 | The Big Bang Theory| Comedy | 2007 | 8.1|
+|10 | Modern Family | Comedy | 2009 | 8.4|
+  
+  - **` Episodes`**
+  
+|id | title | season | episode_no | tv_show_id|
+|---|------|---------|------------|-----------|
+|1 | Pilot | 1 | 1 | 1|
+|2 | Cat's in the Bag | 1 | 2 | 1|
+|3 | ...And the Bag's in the River | 1 | 3 | 1|
+|4 | Cancer Man | 1 | 4 | 1|
+|5 | Gray Matter | 1 | 5 | 1|
+|6 | The Pointy End | 1 | 8 | 2|
+|7 | Fire and Blood | 1 | 10 | 2|
+|8 | Winter Is Coming | 1 | 1 | 2|
+|9 | The Kingsroad | 1 | 2 | 2|
+|10 | Cripples, Bastards, and Broken Things | 1 | 4 | 2|
+  
+  - **` Cast`**
+  
+|id | name | gender | age | nationality|
+|----|-----|--------|-----|------------|
+|1 | Bryan Cranston | M | 65 | American|
+|2 | Aaron Paul | M | 42 | American|
+|3 | Anna Gunn | F | 53 | American|
+|4 | Emilia Clarke | F | 35 | British|
+|5 | Kit Harington | M | 35 | British|
+|6 | Sophie Turner | F | 25 | British|
+|7 | Jennifer Aniston | F | 53 | American|
+|8 | Courteney Cox | F | 57 | American|
+|9 | Lisa Kudrow | F | 58 | American|
+|10 | Matt LeBlanc | M | 54 | American|
+  
+  - **` Ratings`**
+  
+|id | tv_show_id | rating|
+|---|------------|-------|
+|1 | 1 | 9.5|
+|2 | 2 | 9.3|
+|3 | 3 | 8.9|
+|4 | 4 | 8.9|
+|5 | 5 | 8.7|
+|6 | 6 | 8.7|
+|7 | 7 | 9.2|
+|8 | 8 | 8.8|
+|9 | 9 | 8.1|
+|10 | 10 | 8.4|
+
+#### Task 1/What are the top 5 TV shows with the highest rating?
+
+```sql
+SELECT title, rating
+FROM TV_Shows
+ORDER BY rating DESC
+LIMIT 5;
+```
+|title|	rating|
+|-----|--------|
+|Breaking Bad	|9.5|
+|Game of Thrones	|9.3|
+|Friends	|8.9|
+|The Office	|8.9|
+|Stranger Things	|8.7|
+
+#### Task 2/Who are the top 5 actors who appeared in the most TV shows?
+
+```sql
+SELECT name, COUNT(*) AS appearances
+FROM Cast
+GROUP BY name
+ORDER BY appearances DESC
+LIMIT 5;
+```
+|name	|appearances|
+|------|-----------|
+|Jennifer Aniston	|3|
+|Courteney Cox	|3|
+|Lisa Kudrow	|3|
+|Matt LeBlanc	|3|
+|Bryan Cranston	|1|
+
+#### Task 3/What is the average rating of TV shows released before the year 2000?
+
+```sql
+SELECT AVG(rating) AS avg_rating
+FROM TV_Shows
+WHERE year < 2000;
+```
+|avg_rating|
+|---------|
+|8.75|
+
+#### Task 4/What are the titles of the episodes with the highest rating for each TV show?
+
+```sql
+SELECT t.title, e.title AS episode_title, e.rating
+FROM TV_Shows t
+JOIN Episodes e ON t.id = e.tv_show_id
+WHERE e.rating = (SELECT MAX(rating) FROM Episodes WHERE tv_show_id = t.id);
+```
+|title	|episode_title	|rating|
+|------|-------------|--------|
+|Breaking Bad|	Felina|	9.9|
+|Game of Thrones|	The Winds of Winter|	9.9|
+|Friends|	The One with the Embryos	|9.5|
+|The Office|	Goodbye, Michael	|9.8|
+|Stranger Things|	Chapter Eight: The Upside Down|	9.5|
+
+#### Task 5/What is the total number of episodes for each TV show?
+
+```sql
+SELECT t.title, COUNT(*) AS total_episodes
+FROM TV_Shows t
+JOIN Episodes e ON t.id = e.tv_show_id
+GROUP BY t.title;
+```
+|title	|total_episodes|
+|--------|------------|
+|Breaking Bad|	62|
+|Game of Thrones	|73|
+|Friends|	236|
+|The Office	|201|
+|Stranger Things	|25|
+
+#### Task 5/What is the total number of episodes for each TV show?
+
+```sql
+SELECT t.title, COUNT(*) AS total_episodes
+FROM TV_Shows t
+JOIN Episodes e ON t.id = e.tv_show_id
+GROUP BY t.title;
+```
+|title	|total_episodes|
+|--------|------------|
+|Breaking Bad|	62|
+|Game of Thrones	|73|
+|Friends|	236|
+|The Office	|201|
+|Stranger Things	|25|
+
+</details>
