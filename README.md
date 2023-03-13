@@ -1261,3 +1261,65 @@ GROUP BY m.Category;
 
  
 </details>
+  
+  
+## Case 9: Wine manufacturing
+
+<details>
+  <summary>Click to expand</summary>
+  
+  Wine manufacturing is a complex process that involves cultivating and harvesting grapes, fermenting the juice, and aging the resulting wine. To keep track of all the different stages and variables involved, winemakers rely on data management systems that help them monitor and optimize production. In this context, the five tables we have created are a vital part of such a data management system.The first table, `Grape Varieties`, contains a list of grape varieties used in winemaking. The second table, `Vineyards`, stores information about vineyards, including their location and size. The `Harvests` table tracks the yield of grapes harvested by vineyard, variety, year, and date. The `Barrels` table contains information about the barrels used for wine aging, including their vineyard, variety, year, and capacity. Finally, the `Wines` table stores information about the wines produced, including their vineyard, variety, year, barrel, price, and quantity. Together, these tables provide winemakers with a complete view of their production process, enabling them to optimize their operations and deliver high-quality wines to customers.
+  
+
+   - **` Grape Varieties `**
+  
+| id | variety    |
+|----|------------|
+| 1  | Chardonnay |
+| 2  | Cabernet   |
+| 3  | Pinot Noir |
+| 4  | Merlot     |
+| 5  | Sauvignon  |
+
+   - **` Vineyards `**
+  
+|id|vineyard_id|	variety_id|	year|	harvest_date|	yield_tons|
+|--|-----------|------------|-----|-------------|-----------|  
+|1|	1	|1	|2020	|2020-09-28	|50.2|
+|2|	2	|2	|2021	|2021-10-10	|25.6|
+|3|	3	|3	|2019	|2019-08-15	|190.5|
+|4|	4	|4	|2022	|2022-09-03	|120.1|
+|5|	5	|5	|2021	|2021-10-20	|48.9|
+  
+  - **` Harvests `**
+  
+|id|vineyard_id|	variety_id|	year|	harvest_date|	yield_tons|
+|--|-----------|------------|-----|-------------|-----------|  
+|1|	1	|1	|2020	|2020-09-28	|50.2|
+|2|	2	|2	|2021	|2021-10-10	|25.6|
+|3|	3	|3	|2019	|2019-08-15	|190.5|
+|4|	4	|4	|2022	|2022-09-03	|120.1|
+|5|	5	|5	|2021	|2021-10-20	|48.9|
+  
+  
+  - **` Barrels `**
+  
+|id|	vineyard_id|	variety_id|	year|	capacity_liters|
+|--|-------------|------------|-----|----------------|  
+|1	|1	|1	|2018	|225|
+|2	|2	|2	|2020	|300|
+|3	|3	|3	|2019	|500|
+|4	|4	|4	|2021	|225|
+|5	|5	|5	|2022	|300|
+  
+  
+  - **` Wines `**
+  
+|id|	vineyard_id|	variety_id|	year|	barrel_id|	price_usd|	quantity_bottles|
+|--|-------------|-----------|------|----------|----------|-------------------|
+|1	|1	|1	|2018	|1	|100	|100|
+|2	|2	|2	|2020	|2	|80	|150|
+|3	|3	|3	|2019	|3	|120	|50|
+|4	|4	|4	|2021	|4	|90	|75|
+|5|	5|	5|	2022|	5	|110|	125|
+  
