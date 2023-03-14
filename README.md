@@ -1322,4 +1322,112 @@ GROUP BY m.Category;
 |3	|3	|3	|2019	|3	|120	|50|
 |4	|4	|4	|2021	|4	|90	|75|
 |5|	5|	5|	2022|	5	|110|	125|
-  
+
+#### Task 1/What are the different grape varieties used for wine manufacturing?
+
+```sql
+SELECT variety FROM Grape Varieties
+```
+| variety	 |
+|--------------|
+| Chardonnay |
+| Cabernet | 
+| Pinot Noir | 
+| Merlot | 
+| Sauvignon |
+
+#### Task 2/What is the total yield of each vineyard for each year?
+
+```sql
+SELECT Vineyards.vineyard_id, Vineyards.year, SUM(Vineyards.yield_tons) AS total_yield
+FROM Vineyards
+GROUP BY Vineyards.vineyard_id, Vineyards.year
+```
+| vineyard_id	 |year|total_yield|
+|--------------|---|------------|
+| 1 |2020|50.2|
+| 2 | 2021|25.6|
+| 3 | 2019|190.5|
+| 4 | 2022|120.1|
+| 5 | 2021|48.9|
+
+#### Task 3/Which vineyards have produced wine aged in barrels with a capacity of 225 liters or more?
+
+```sql
+SELECT DISTINCT Vineyards.vineyard_id, Barrels.capacity_liters
+FROM Vineyards
+JOIN Barrels ON Vineyards.vineyard_id = Barrels.vineyard_id
+WHERE Barrels.capacity_liters >= 225
+```
+
+|vineyard_id|	capacity_liters|
+|-----------|----------------|
+|1|	225|
+|2|	300|
+|3|	500|
+|4|	225|
+|5|	300|
+
+#### Task 4/What is the total quantity of wine produced for each year and grape variety?
+
+```sql
+SELECT Vineyards.variety_id, Vineyards.year, SUM(Vineyards.yield_tons) AS total_yield, SUM(Wines.quantity_bottles) AS total_bottles
+FROM Vineyards
+JOIN Wines ON Vineyards.vineyard_id = Wines.vineyard_id AND Vineyards.variety_id = Wines.variety_id AND Vineyards.year = Wines.year
+GROUP BY Vineyards.variety_id, Vineyards.year
+```
+|variety_id|	year|	total_yield|	total_bottles|
+|---------|-------|-----------|----------------|
+|1|	2020	|50.2	|100|
+|2|	2021	|25.6	|150|
+|3|	2019	|190.5	|50|
+|4|	2022	|120.1	|75|
+|5|	2021	|48.9	|125|
+
+#### Task 5/What is the average price per bottle for each grape variety?
+
+```sql
+SELECT variety, AVG(price_usd / quantity_bottles) AS avg_price_per_bottle
+FROM Wines
+JOIN `Grape Varieties` ON Wines.variety_id = `Grape Varieties`.id
+GROUP BY variety
+```
+|variety|	avg_price_per_bottle|
+|---------|-----------------|
+|Chardonnay|	1|
+|Cabernet|	0.53|
+|Pinot Noir|	2.4|
+|Merlot|	1.2|
+|Sauvignon|	0.88|
+
+#### Task 6/What is the total quantity of wine produced per grape variety in the year 2021, and what is the total revenue generated from selling that wine at $120 per bottle? Sort the result in descending order of revenue.
+
+```sql
+SELECT gv.variety, SUM(w.quantity_bottles) AS total_quantity, SUM(w.quantity_bottles * 120) AS revenue
+FROM grape_varieties gv
+JOIN vineyards v ON gv.id = v.variety_id
+JOIN wines w ON v.id = w.vineyard_id AND v.variety_id = w.variety_id AND v.year = w.year
+WHERE v.year = 2021
+GROUP BY gv.variety
+ORDER BY revenue DESC;
+```
+| variety    | total_quantity | revenue  |
+|------------|----------------|----------|
+| Sauvignon  | 15000          | 1800000 |
+| Cabernet   | 7500           | 900000  |
+
+#### Task 7/What is the average yield per acre for each vineyard and grape variety combination? Assume that each vineyard has an area of 100 acres. Round the result to two decimal places
+
+```sql
+SELECT v.vineyard_id, gv.variety, ROUND(SUM(v.yield_tons)/(COUNT(*)*100), 2) AS avg_yield_per_acre
+FROM vineyards v
+JOIN grape_varieties gv ON v.variety_id = gv.id
+GROUP BY v.vineyard_id, gv.variety;
+```
+| vineyard_id | variety     | avg_yield_per_acre |
+|-------------|-------------|-------------------|
+| 1           | Chardonnay  | 0.25              |
+| 2           | Cabernet    | 0.13              |
+| 3           | Pinot Noir  | 0.95              |
+| 4           | Merlot      | 0.60              |
+| 5           | Sauvignon   | 0.24              |
