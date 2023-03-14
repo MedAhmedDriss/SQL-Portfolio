@@ -1110,7 +1110,7 @@ HAVING comedy_shows >= 2;
 </details>
 
 
-## Case 8: Restaurant managment.
+## Case 9: Restaurant managment.
 
 <details>
   <summary>Click to expand</summary>
@@ -1263,7 +1263,7 @@ GROUP BY m.Category;
 </details>
   
   
-## Case 9: Wine manufacturing
+## Case 10: Wine manufacturing
 
 <details>
   <summary>Click to expand</summary>
