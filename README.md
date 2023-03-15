@@ -1439,9 +1439,10 @@ GROUP BY v.vineyard_id, gv.variety;
 <details>
   <summary>Click to expand</summary>
   
+  
   Coffee is one of the world's most popular beverages, enjoyed by millions of people every day. But behind every cup of coffee is a complex and fascinating industry, involving growers, roasters, sellers, and buyers. The four tables provided here offer a glimpse into this world, by representing data related to coffee shops, coffee roasters, coffee varieties, and coffee sales.
 
-The coffee shops table includes information about various coffee shops, such as their name, location, and phone number. The coffee roasters table lists different coffee roasters, their location, and phone number. The coffee varieties table includes different types of coffee and their origin country, as well as the roaster who produced them. Finally, the coffee sales table tracks sales of different coffee varieties at different coffee shops, including the date of the sale, the pounds of coffee sold, and the revenue generated.
+The `coffee shops` table includes information about various coffee shops, such as their name, location, and phone number. The `coffee roasters` table lists different coffee roasters, their location, and phone number. The `coffee varieties` table includes different types of coffee and their origin country, as well as the roaster who produced them. Finally, the `coffee sales` table tracks sales of different coffee varieties at different coffee shops, including the date of the sale, the pounds of coffee sold, and the revenue generated.
   
   - **` Coffee Shops `**
   
