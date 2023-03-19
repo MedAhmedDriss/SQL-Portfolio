@@ -7,7 +7,8 @@
 <details>
   <summary>Click to expand</summary>
 
-We habe three tables below for a fictional school that tracks student grades:
+We have four tables below for a fictional school that tracks student grades.
+The `Students` table contains information about the students enrolled in the school, including their unique ID, first name, last name, and email. The `Courses` table lists all the courses offered by the school and includes the course ID, name, and instructor ID. The `Instructors` table contains information about the instructors who teach at the school, including their unique ID, first name, last name, and email. Finally, the `Grades` table contains information about the grades earned by each student in each course, including the student ID, course ID, and actual grade earned.
 
 - **`students`**
 
@@ -55,7 +56,7 @@ We habe three tables below for a fictional school that tracks student grades:
 | 12             | 5    | 4 | 95|
 
 
-The `Students` table contains information about the students enrolled in the school, including their unique ID, first name, last name, and email. The `Courses` table lists all the courses offered by the school and includes the course ID, name, and instructor ID. The `Instructors` table contains information about the instructors who teach at the school, including their unique ID, first name, last name, and email. Finally, the `Grades` table contains information about the grades earned by each student in each course, including the student ID, course ID, and actual grade earned.
+
 
 
 #### Task 1/ What are the names of all students who are enrolled in "Mathematics" course?
@@ -131,7 +132,7 @@ HAVING AVG(grades.grade) = (
 <details>
   <summary>Click to expand</summary>
 
-We'll make use of details regarding a publishing business that issues both translated and original works. `Books`,`Authors`, `Editors`, and `Translators` are the four tables in our database.
+We'll make use of details regarding a publishing business that issues both translated and original works.  `Books`, `Authors`, `Editors`, and `Translators`. The `Books` table contains information about the books, including their title, type, and foreign keys for authors, editors, and translators. The `Authors` table includes the IDs and names of the authors, while the `Editors` table lists the IDs and names of the editors. Lastly, the `Translators` table has information about the translators.
 
 - **`Books`**
 
@@ -241,6 +242,8 @@ ORDER BY b.id;
   <summary>Click to expand</summary>
 
  We have the two tables below :
+ 
+ `Customer` and `Order`. The `Customer` table lists information about customers, including their customer_id, age, location, and gender. The `Order` table contains details about orders, such as order_id, customer_id, date, amount, and whether the order is a sale or not. The customer_id field in the Order table acts as a foreign key that links the order to the respective customer who placed it. The tables provide valuable insights into the customers' demographics and their orders.
 
 - **`Customer`**
 
