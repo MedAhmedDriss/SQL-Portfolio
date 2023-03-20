@@ -219,26 +219,50 @@ We'll make use of details regarding a publishing business that issues both trans
   ORDER BY b.id;
 ```
 
+|id|	title|	first_name|	last_name|
+|--|------|------------|-----------|
+|1|	Harry Potter and the Chamber of Secrets	|J.K	|Rowling|
+|2|	Oranges|	Olga|	Savelieva|
+|3|	The Changeling|	Kate|	Horsley|
+|4|	The Lord of the Rings: Complete Visual Companion|	Jude|	Fisher|
+|5|	Applied AI	|Jack|	Smart|
+|6|	Your Trip	|Yao|	Dou
+|7|	The Control of Nature	|John|	McPhee|
+|8|	Your Happy Life	|Yao	|Dou|
+
 #### Task 2/ Query books along with their translators (i.e., the translator’s last name). Only half of  books have been translated and thus have a corresponding translator:
 ```sql
-  SELECT b.id, b.title, b.type, t.last_name AS translator
-  FROM books b
-  JOIN translators t
-  ON b.translator_id = t.id
-  ORDER BY b.id;
+SELECT Books.Title, Translators.last_name
+FROM Books
+LEFT JOIN Translators ON Books.translator_id = Translators.ID
+WHERE Books.translator_id IS NOT NULL
 ```
+
+|Title	|last_name|
+|-------|----------|
+|Oranges	|Edwards|
+|Applied AI	|Green|
+|Your Trip	|Weng|
+|Your Happy Life	|Edwards|
  
 #### Task 3/ Query information about each book’s author and translator (i.e., their last names). We also want to keep the basic information about each book (i.e., id, title, and type).
 ```sql
-  SELECT b.id, b.title, b.type, a.last_name AS author,
-  t.last_name AS translator
-  FROM books b
-  LEFT JOIN authors a
-  ON b.author_id = a.id
-  LEFT JOIN translators t
-  ON b.translator_id = t.id
-  ORDER BY b.id;
+SELECT b.id, b.title, b.type, a.last_name AS author_last_name, t.last_name AS translator_last_name
+FROM Books b
+LEFT JOIN Authors a ON b.author_id = a.id
+LEFT JOIN Translators t ON b.translator_id = t.id;
 ```
+
+|id|	title|	type|	author_last_name	|translator_last_name|
+|--|-------|------|-------------------|--------------------|
+|1|	Harry Potter and the Chamber of Secrets|	Original	|Rowling	|Honess|
+|2|	Oranges	|Translated	|Savelieva	|Edwards|
+|3|	The Changeling	|Original|	Horsley|	NULL|
+|4|	The Lord of the Rings: Complete Visual Companion	|Original	|Fisher	|NULL|
+|5|	Applied AI|	Translated|	Smart|	Green|
+|6|	Your Trip	|Translated	|Dou	|Weng|
+|7|	The Control of Nature	|Original|	McPhee|	NULL|
+|8|	Your Happy Life	|Translated	|Dou	|Edwards|
   
 #### Task 4/Query the basic book information (i.e., ID and title) along with the last names of the corresponding editors. Again, we want to keep all of the books in the result set.
 ```sql
@@ -248,19 +272,42 @@ We'll make use of details regarding a publishing business that issues both trans
   ON b.editor_id = e.id
   ORDER BY b.id;
 ```
+|id|	title	|editor_last_name|
+|--|--------|-----------------|
+|1|	Harry Potter and the Chamber of Secrets	|Honess|
+|2|	Oranges|	Wright|
+|3|	The Changeling|	Raible|
+|4|	The Lord of the Rings: Complete Visual Companion|	Johnson|
+|5|	Applied AI	|Evans|
+|6|	Your Trip	|Rothman|
+|7|	The Control of Nature	| |
+|8|	Your Happy Life	|Rothman|
+
+
 #### Task 5/ Join all four tables to get information about all of the books, authors, editors, and translators in one table.
 ```sql
-SELECT b.id, b.title, a.last_name AS author, e.last_name AS editor,
-t.last_name AS translator
+SELECT b.id, b.title, b.type, 
+       a.first_name AS author_first_name, a.last_name AS author_last_name, 
+       e.first_name AS editor_first_name, e.last_name AS editor_last_name, 
+       t.first_name AS translator_first_name, t.last_name AS translator_last_name
 FROM books b
-FULL JOIN authors a
-ON b.author_id = a.id
-FULL JOIN editors e
-ON b.editor_id = e.id
-FULL JOIN translators t
-ON b.translator_id = t.id
+LEFT JOIN authors a ON b.author_id = a.id
+LEFT JOIN editors e ON b.editor_id = e.id
+LEFT JOIN translators t ON b.translator_id = t.id
 ORDER BY b.id;
 ```
+| ID | Title     | Type       | Author First Name | Author Last Name | Editor First Name | Editor Last Name | Translator First Name | Translator Last Name |
+|----|-----------|------------|------------------|-------------|--------------|-----------|-----------------|--------------|
+| 1  | Harry Potter and the Chamber of Secrets      | Original   | J.K      | Rowling     | Peter       | Honess          |        |            |
+| 2  | Oranges       | Translated | Olga             | Savelieva        | Sebastian         | Wright          | Ira       | Davies        |
+| 3  | The Changeling       | Original   | Kate             | Horsley          | Alton             | Raible          |          |             |
+| 4  | The Lord of the Rings: Complete Visual Companion     | Original   | Jude             | Fisher           | Mark          | Johnson    |      |           |
+| 5  | Applied AI     | Translated | Jack      | Smart     | Maria             | Evans           | Roman                 | Edwards              |
+| 6  | Your Trip   | Translated | Yao              | Dou              | Joshua            | Rothman         | Ling                  | Weng                 |
+| 7  | The Control of Nature  | Original   | John        | McPhee      | Sebastian         | Wright          |                       |                      |
+| 8  | Your Happy Life        | Translated | Yao      | Dou        | Joshua    | Rothman     | Kristian      | Green                |
+
+
 </details>
 
 
