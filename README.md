@@ -26,9 +26,9 @@ The `Students` table contains information about the students enrolled in the sch
 
 | course_id | course_name | instructor_id |
 |-----------|-------------|---------------|
-| 1         | Math 101    | 1             |
-| 2         | English 101 | 2             |
-| 3         | History 101 | 3             |
+| 1         | Math    | 1             |
+| 2         | English  | 2             |
+| 3         | History  | 3             |
 
 -**` instructors`**
 
@@ -61,70 +61,98 @@ The `Students` table contains information about the students enrolled in the sch
 
 #### Task 1/ What are the names of all students who are enrolled in "Mathematics" course?
 ```sql
- SELECT s.first_name, s.last_name
+SELECT s.first_name, s.last_name
 FROM students s
-INNER JOIN grades g ON s.student_id = g.student_id
-INNER JOIN courses c ON g.course_id = c.course_id
-WHERE c.course_name = 'Mathematics';
+INNER JOIN enrollment e ON s.student_id = e.student_id
+INNER JOIN courses c ON e.course_id = c.course_id
+WHERE c.course_name = 'Math ';
 ```
+|first_name|last_name|
+|---------|----------|
+|Fatma|Ben Youssef|
+
+
+
 
 #### Task 2/ What are the names of all instructors who taught a course with a grade of "A"?
 
 ```sql
- SELECT DISTINCT i.first_name, i.last_name
+SELECT DISTINCT i.first_name, i.last_name
 FROM instructors i
-INNER JOIN courses c ON i.instructor_id = c.instructor_id
-INNER JOIN grades g ON c.course_id = g.course_id
-WHERE g.grade = 'A';
+JOIN courses c ON i.instructor_id = c.instructor_id
+JOIN enrollments e ON c.course_id = e.course_id
+WHERE e.grade >= 90;
+-- a student has received a grade of 90 or above, which is equivalent to an "A" grade.
 ```
+
+|first_name|	last_name|
+|----------|-----------|
+|Zainab|	Fehmi|
+|Amina|	Khelifi|
+|Mohamed|	Ben Ali|
+|Asma|	Saadi|
 
 #### Task 3/How many students are enrolled in each course?
 
 ```sql
-SELECT c.course_name, COUNT(DISTINCT g.student_id) as num_students
+SELECT c.course_name, COUNT(e.student_id) AS num_students
 FROM courses c
-INNER JOIN grades g ON c.course_id = g.course_id
+LEFT JOIN enrollments e ON c.course_id = e.course_id
 GROUP BY c.course_name;
 ```
+|course_name|	num_students|
+|----------|--------------|
+|Math| 	2|
+|English| 	2|
+|History| 	2|
 
 
 #### Task 4/What is the average grade for each course?
 
 ```sql
-SELECT c.course_name, AVG(g.grade) as avg_grade
+SELECT c.course_name, AVG(e.grade) AS avg_grade
 FROM courses c
-INNER JOIN grades g ON c.course_id = g.course_id
+JOIN enrollments e ON c.course_id = e.course_id
 GROUP BY c.course_name;
 ```
+
+
+|course_name	|avg_grade|
+|-----------|-----------|
+|Math 	|81.5|
+|English |	86.0|
+|History |	86.0|
 
 #### Task 5/What is the name of the student who has the highest grade across all courses?
 
 ```sql
-SELECT s.first_name, s.last_name
+SELECT s.first_name, s.last_name, MAX(e.grade) AS max_grade
 FROM students s
-INNER JOIN grades g ON s.student_id = g.student_id
-WHERE g.grade = (
-  SELECT MAX(grade) FROM grades
-);
+JOIN enrollments e ON s.student_id = e.student_id
+GROUP BY s.student_id
+ORDER BY max_grade DESC
+LIMIT 1;
 ```
+
+|first_name	|last_name	|max_grade|
+|---------|------------|----|
+|Amina	|Khelifi	|95|
 
 #### Task 6/What is the name and email address of the student with the highest average grade?
 
 
 ```sql
-SELECT students.first_name, students.last_name, students.email, AVG(grades.grade) AS avg_grade
-FROM students
-INNER JOIN grades ON students.student_id = grades.student_id
-GROUP BY students.student_id, students.first_name, students.last_name, students.email
-HAVING AVG(grades.grade) = (
-    SELECT MAX(avg_grade)
-    FROM (
-        SELECT AVG(grade) AS avg_grade
-        FROM grades
-        GROUP BY student_id
-    ) AS student_grades
-);
+SELECT s.first_name, s.last_name, s.email, AVG(e.grade) AS avg_grade
+FROM students s
+JOIN enrollments e ON s.student_id = e.student_id
+GROUP BY s.student_id
+ORDER BY avg_grade DESC
+LIMIT 1;
 ```
+|first_name	|last_name	|email	|avg_grade|
+|-----------|-----------|--------|--------|
+|Amina|	Khelifi|	amina.khelifi@esprix.com|	93.5|
+
 </details>
 
 ## Case 2: Translated and original works
