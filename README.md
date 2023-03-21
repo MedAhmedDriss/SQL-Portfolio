@@ -320,39 +320,42 @@ ORDER BY b.id;
  
  `Customer` and `Order`. The `Customer` table lists information about customers, including their customer_id, age, location, and gender. The `Order` table contains details about orders, such as order_id, customer_id, date, amount, and whether the order is a sale or not. The customer_id field in the Order table acts as a foreign key that links the order to the respective customer who placed it. The tables provide valuable insights into the customers' demographics and their orders.
 
-- **`Customer`**
+  - **`Customer`**
 
-| customer_id  | age | location  | gender|
-| :------------- | :------------- | :------------- |  :------------- | 
-| 106  |34   |Ariena ||Male |
-| 107  | 30   | Sfax  |  Male  | 
-| 108  |42  | Sousse  |Female  |
-| 110  |40  |Ariena ||Male |
-| 140  |40  | Sousse  |Female  |
-| 165  |52  |Ariena ||Male |
-| 201  |37  | Monastir  |Female  |
- 
- 
- - **`Order`**
- 
- | order_id  | customer_id | date  | amount| is_sale |
-| :------------- | :------------- | :------------- |  :------------- | :------------- | 
-| 23001  |120   |2021-01-30 |104.10 |True |
-| 23006  |124   | 2021-02-14  | 84.20 | False  | 
-| 23009  |165  | 2021-04-13  |46.60 |True  |
-| 23012  |167  |2021-04-07 |66.30|True |
-| 23020  |201  |2021-03-04 |10.60|False |
+  | customer_id  | age | location  | gender|
+  | :------------- | :------------- | :------------- |  :------------- | 
+  | 106  |34   |Ariena ||Male |
+  | 107  | 30   | Sfax  |  Male  | 
+  | 108  |42  | Sousse  |Female  |
+  | 110  |40  |Ariena ||Male |
+  | 140  |40  | Sousse  |Female  |
+  | 165  |52  |Ariena ||Male |
+  | 201  |37  | Monastir  |Female  |
 
 
-#### Task 1/ We want to see the average age of customers who made a purchase on 2020–04–17.
+   - **`Order`**
+
+   | order_id  | customer_id | date  | amount| is_sale |
+  | :------------- | :------------- | :------------- |  :------------- | :------------- | 
+  | 23001  |108   |2021-01-30 |104.10 |True |
+  | 23006  |124   | 2021-02-14  | 84.20 | False  | 
+  | 23009  |165  | 2021-04-13  |46.60 |True  |
+  | 23012  |167  |2021-04-07 |66.30|True |
+  | 23020  |201  |2021-03-04 |10.60|False |
+
+
+#### Task 1/ We want to see the average age of customers who made a purchase on 2021-02-14.
 
 ```sql
-  select avg(customer.age), orders.date
-  from customer
-  join orders
-  on customer.customer_id = orders.customer_id
-  where orders.date = '2020–04–17';
+ SELECT AVG(Customer.age) AS avg_age
+FROM Customer
+JOIN Order ON Customer.customer_id = Order.customer_id
+WHERE Order.date = '2021-02-14';
 ```
+
+| avg_age |
+|---------|
+| 30.0    |
 
 #### Task 2/ We want to see the average order amount made by customers in Ariena.
 
@@ -364,6 +367,10 @@ on customer.customer_id = orders.customer_id
 where customer.location = "Ariena";
 ```
 
+| avg_amount |
+|------------|
+| 46.60      |
+
 #### Task 3/ We want to see the average order amount for each city.
 ```sql
 select customer.location, avg(orders.amount)
@@ -372,15 +379,24 @@ join orders
 on customer.customer_id = orders.customer_id
 group by customer.location;
 ```
+| location | avg_amount |
+|----------|------------|
+| Ariena   | 46.60      |
+| Sfax     | 84.20      |
+| Sousse   | 72.45      |
+
 #### Task 4/ We want to see the highest order amount and the age of customer who made that order.
 ```sql
-select customer.age, orders.amount
-from customer
-join orders
-on customer.customer_id = orders.customer_id
-order by orders.amount desc
-limit 1;
+SELECT Customer.age, Order.amount
+FROM Customer
+JOIN Order ON Customer.customer_id = Order.customer_id
+ORDER BY Order.amount DESC
+LIMIT 1;
 ```
+| age | amount |
+|-----|--------|
+|  108 | 104.10 |
+
 
 #### Task 5/ We want to see the highest order amount made by customer whose id is 201.
 ```sql
@@ -390,6 +406,10 @@ join orders
 on customer.customer_id = orders.customer_id 
 where customer.customer_id = 201;
 ```
+| max_amount |
+|------------|
+|      10.60 |
+
 #### Task 6/ We want to see the top 5 customers from Sousse in terms of the highest average order amount when there is sale.
 ```sql
 select c.cust_id, avg(o.amount) as average 
@@ -400,6 +420,11 @@ where c.location = "Sousse" and o.is_sale = "True"
  group by c.customer_id 
  order by average desc limit 5;
  ```
+ | customer_id | location | avg_amount |
+|-------------|----------|------------|
+|         140 | Sousse   |     40.600 |
+|         108 | Sousse   |     10.600 |
+ 
 #### Task 7/ We want to find out the location of the customer who has the lowest order amount on 2021–01–30.
 ```sql
 select c.customer_id , c.location
@@ -410,6 +435,8 @@ where o.date = "2021–01–30" and o.amount = (
 select min(amount) from orders where date = "2021–01–30"
  );
  ```
+ 
+ 
 </details>
 
 ## Case 4: Zoo management
