@@ -1699,7 +1699,7 @@ GROUP BY v.name;
 </details>
 
   
-## Case 10: Clothes Store 
+## Case 12: Clothes Store 
 
 <details>
   <summary>Click to expand</summary>
