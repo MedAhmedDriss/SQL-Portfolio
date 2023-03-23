@@ -1744,6 +1744,100 @@ GROUP BY v.name;
 |004|	Salma	|Ben Youssef	|salma.benyoussef@email.com	|+216 71 987 654|
 
 
+  #### Task 1/ What is the total revenue for each product category?
+  
+  ```sql
+SELECT Category, SUM(Price * Quantity) AS Revenue
+FROM Products
+JOIN Orders ON Products.ProductID = Orders.ProductID
+GROUP BY Category;
+```
+
+  
+|Category|	Revenue|
+|--------|---------|
+|Men|	17093.25|
+|Women|	11986.16|
+  
+  #### Task 2/ Who are the top 3 customers by total order amount?
+
+  
+  ```sql
+SELECT Customers.CustomerID, CONCAT(Customers.FirstName, ' ', Customers.LastName) AS CustomerName, SUM(Orders.Total) AS TotalAmount
+FROM Customers
+JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+GROUP BY Customers.CustomerID
+ORDER BY TotalAmount DESC
+LIMIT 3;
+```
+
+  
+|CustomerID|	CustomerName|	TotalAmount|
+|-----------|------------|------------|
+|002|	Fatima Ben Ali	|359.96|
+|003|	Youssef Toumi	|139.97|
+|001|	Ahmed Ben Salah	|101.98|
+  
+  #### Task 3/ What is the current inventory of each product?
+
+
+  
+  ```sql
+SELECT ProductID, ProductName, QuantityInStock
+FROM Products;
+```
+  
+|ProductID|	ProductName|	QuantityInStock|
+|---------|------------|------------------|  
+|001|	Polo	|150|
+|002|	Caftan	|100|
+|003|	Chachi	|200|
+|004|	Jebba	|175|
+|005|	Fouta	|300|
+  
+  #### Task 4/ How many orders were made in each month?
+
+
+  ```sql
+SELECT DATE_FORMAT(OrderDate, '%Y-%m') AS Month, COUNT(*) AS NumOrders
+FROM Orders
+GROUP BY Month;
+```
+  
+|Month|	NumOrders|
+|------|-----------|
+|2022-01	|1|
+|2022-02	|1|
+|2022-03	|2|
+  
+  #### Task 5/ What is the average price of products in each category?
+
+
+
+  ```sql
+SELECT Category, AVG(Price) AS AvgPrice
+FROM Products
+GROUP BY Category;
+```
+  
+|Category|	AvgPrice|
+|--------|------------|
+|Men|	40.743|
+|Women|	59.93|
+  
+ #### Task 6/ Who are the employees with a phone number starting with " 50"?
+
+
+  ```sql
+SELECT EmployeeID, CONCAT(FirstName, ' ', LastName) AS EmployeeName, Email, Phone
+FROM Employees
+WHERE Phone LIKE '+216 50%';
+```
+  
+
+|EmployeeID|	EmployeeName|	Email|	Phone|
+|----------|--------------|------|-------|  
+|   001	|Mohamed Ben Ali	|mohamed.benali@email.com	|+216 50 123 456|
  
 </details>
 
