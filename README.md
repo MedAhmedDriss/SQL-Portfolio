@@ -1697,3 +1697,53 @@ GROUP BY v.name;
 |Guatemalan Antigua	|	80|
 
 </details>
+
+  
+## Case 10: Clothes Store 
+
+<details>
+  <summary>Click to expand</summary>
+  
+  These tables represent the main aspects of a clothes store management system. The `Products` table includes information about the products available in the store, such as their ID, name, category, price, and quantity in stock. The `Customers` table contains details about the store's customers, including their ID, first and last name, email address, and phone number. The `Orders` table keeps track of the orders placed by customers, including the order ID, customer ID, order date, and total amount spent. Finally, the `Employees` table includes information about the employees working at the store, such as their ID, first and last name, email address, and phone number. By using these four tables, a clothes store can effectively manage its inventory, customer relationships, and employees.
+  
+ - **` Products `**
+
+|Product_ID|	Product_Name|	Category|	Price|	Quantity in Stock|
+|---------|---------------|---------|------|-------------------|
+|001|	Polo|	Men|	50.99	|150|
+|002|	Caftan|	Women|	99.99	|100|
+|003|	Chachi|	Men|	29.99	|200|
+|004|	Jebba|	Men|	39.99	|175|
+|005|	Fouta|	Women|	19.99	|300|
+
+ - **` Customers `**
+
+
+|Customer_ID|	First_Name|	Last_Name|	Email|	Phone|
+|-----------|----------|----------|--------|--------|
+|001|	Ahmed|	Ben Salah|	ahmed.bensalah@email.com|	+216 20 123 456|
+|002|	Fatima|	Ben Ali|	fatima.benali@email.com|	+216 70 555 555|
+|003|	Youssef|	Toumi|	youssef.toumi@email.com|	+216 98 123 456|
+|004|	Houda|	Ben Amor|	houda.benamor@email.com|	+216 50 987 654|
+
+ - **` Orders `**
+ 
+|Order_ID|	Customer_ID|	Order_Date|	Total|
+|--------|-------------|-----------|-------|
+|001|	001|	2022-01-01|	101.98|
+|002|	002|	2022-02-02|	259.97|
+|003|	003|	2022-03-03|	139.97|
+|004|	002|	2022-03-10|	99.99|
+
+
+|Employee_ID|	First_Name|	Last_Name|	Email|	Phone|
+|-----------|------------|---------|--------|---------|
+|001|	Mohamed|	Ben Said	|mohamed.bensaid@email.com	|+216 98 765 432|
+|002|	Noura	|Ben Mansour	|noura.benmansour@email.com	|+216 50 123 456|
+|003|	Ahmed	|Sassi	|ahmed.sassi@email.com	|+216 22 555 555|
+|004|	Salma	|Ben Youssef	|salma.benyoussef@email.com	|+216 71 987 654|
+
+
+ 
+</details>
+
