@@ -1841,7 +1841,7 @@ WHERE Phone LIKE '+216 50%';
  
 </details>
 
-## Case 13: Fictional school
+## Case 13: Hospital managment
 
 <details>
   <summary>Click to expand</summary>
@@ -1855,14 +1855,14 @@ WHERE Phone LIKE '+216 50%';
 
 |PatientID|	FirstName|	LastName|	Gender|	DateOfBirth|	ContactNo|	Address|
 |----------|---------|----------|-------|-----------|----------|---------|
-|1	|Ahmed	Ben Ali	|Male	|1980-01-15	|+216 22 333 444	|27 Rue Habib Bourguiba, Tunis, TN|
-|2	|Aicha	Hamdi	|Female	|1992-06-04	|+216 71 222 333	|14 Rue 14 Janvier, Sousse, TN|
-|3	|Hichem	Khalfaoui	|Male|1975-12-23	|+216 50 123 456	|22 Rue Ali Belhaouane, Sfax, TN|
-|4	|Amira	Jemai	|Female	|1988-09-08	|+216 98 765 432	|11 Rue 2 Mars, Nabeul, TN|
-|5	|Walid	Bouzid	|Male	|1995-03-12	|+216 71 456 789	|9 Rue Alain Savary, Bizerte, TN|
-|6	|Fatma	Khammar	|Female|	1983-08-30	|+216 71 101 010	|33 Rue Habib Thameur, Monastir, TN|
-|7	|Sofiane	Ben Youssef	|Male	|1990-02-21	|+216 99 888 777	|7 Rue Tahar Haddad, Sfax, TN|
-|8|	Nesrine	Zouari	|Female	|1978-11-14	|+216 50 111 222	|6 Rue Mohammed Ali, Tunis, TN|
+|1	|Ahmed	|Ben Ali	|Male	|1980-01-15	|+216 22 333 444	|27 Rue Habib Bourguiba, Tunis, TN|
+|2	|Aicha	|Hamdi	|Female	|1992-06-04	|+216 71 222 333	|14 Rue 14 Janvier, Sousse, TN|
+|3	|Hichem	|Khalfaoui	|Male|1975-12-23	|+216 50 123 456	|22 Rue Ali Belhaouane, Sfax, TN|
+|4	|Amira	|Jemai	|Female	|1988-09-08	|+216 98 765 432	|11 Rue 2 Mars, Nabeul, TN|
+|5	|Walid	|Bouzid	|Male	|1995-03-12	|+216 71 456 789	|9 Rue Alain Savary, Bizerte, TN|
+|6	|Fatma	|Khammar	|Female|	1983-08-30	|+216 71 101 010	|33 Rue Habib Thameur, Monastir, TN|
+|7	|Sofiane	|Ben Youssef	|Male	|1990-02-21	|+216 99 888 777	|7 Rue Tahar Haddad, Sfax, TN|
+|8|	Nesrine|	Zouari	|Female	|1978-11-14	|+216 50 111 222	|6 Rue Mohammed Ali, Tunis, TN|
 
   - **` Doctors   `**
   
