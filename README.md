@@ -1841,3 +1841,164 @@ WHERE Phone LIKE '+216 50%';
  
 </details>
 
+## Case 13: Fictional school
+
+<details>
+  <summary>Click to expand</summary>
+  
+  Hospital management is the practice of effectively and efficiently managing a hospital or healthcare organization. The goal of hospital management is to ensure that patients receive the best possible care while also running the hospital in a profitable manner.
+  
+  The four tables related to hospital management are Patients, Doctors, Visits, and Departments. The Patients table contains information about the hospital's patients, including their ID, name, age, gender, and contact information. The Doctors table includes information about the hospital's doctors, such as their ID, name, specialty, and contact information. The Visits table tracks each patient's visits to the hospital, including the date and time of the visit, the doctor they saw, and their diagnosis and prescription. Finally, the Departments table lists the various departments within the hospital, including their ID, name, and the hospital they are associated with.
+  
+  
+   - **` Patients  `**
+
+|PatientID|	FirstName|	LastName|	Gender|	DateOfBirth|	ContactNo|	Address|
+|----------|---------|----------|-------|-----------|----------|---------|
+|1	|Ahmed	Ben Ali	|Male	|1980-01-15	|+216 22 333 444	|27 Rue Habib Bourguiba, Tunis, TN|
+|2	|Aicha	Hamdi	|Female	|1992-06-04	|+216 71 222 333	|14 Rue 14 Janvier, Sousse, TN|
+|3	|Hichem	Khalfaoui	|Male|1975-12-23	|+216 50 123 456	|22 Rue Ali Belhaouane, Sfax, TN|
+|4	|Amira	Jemai	|Female	|1988-09-08	|+216 98 765 432	|11 Rue 2 Mars, Nabeul, TN|
+|5	|Walid	Bouzid	|Male	|1995-03-12	|+216 71 456 789	|9 Rue Alain Savary, Bizerte, TN|
+|6	|Fatma	Khammar	|Female|	1983-08-30	|+216 71 101 010	|33 Rue Habib Thameur, Monastir, TN|
+|7	|Sofiane	Ben Youssef	|Male	|1990-02-21	|+216 99 888 777	|7 Rue Tahar Haddad, Sfax, TN|
+|8|	Nesrine	Zouari	|Female	|1978-11-14	|+216 50 111 222	|6 Rue Mohammed Ali, Tunis, TN|
+
+  - **` Doctors   `**
+  
+  
+|DoctorID	|FirstName|	LastName|	Gender	|Speciality|
+|--------|----------|---------|--------|-----------|
+|1	|Mohamed|	Ben Salah	|Male	|Cardiology|
+|2|	Samira	|Ben Ammar	|Female	|Oncology|
+|3|	Ahmed	|Ben Youssef	|Male	|Neurology|
+|4|	Salma	|Hamdi	|Female	|Pediatrics|
+|5|	Ali	|Ben Hassen	|Male	Dermatology|
+|6|	Fatma	|Ben Mohamed	|Female	|Ophthalmology|
+|7|	Nizar	|Mabrouk	|Male	|Orthopedics|
+|8|	Amina	|Khalfaoui	|Female	|Psychiatry|
+
+ - **` Visits     `**
+ 
+|VisitID|	PatientID	|DoctorID	|VisitDate	|VisitTime	|Diagnosis	|Prescription|
+|-------|----------|----------|--------|---------|----------|------------|
+|1|	1|	1	|2023-03-28|	10:30:00|	Hypertension|	Amlodipine 5 mg tablet once daily|
+|2	|2	|2	|2023-03-29	|14:30:00	|Breast cancer|	Chemotherapy regimen: Paclitaxel, Trastuzumab, Pertuzumab|
+|3	|3	|3	|2023-03-30	|12:00:00	|Migraine|	Sumatriptan 50 mg tablet as needed for headache relief|
+|4	|4|	4	|2023-03-31	|08:00:00	|Respiratory syncytial virus|	Acetaminophen 325 mg/5 mL oral suspension as needed for fever and pain|
+
+
+ - **` Departments      `**
+
+|DepartmentID|	DepartmentName|	HospitalID|
+|-------------|---------------|----------|
+|1|	Cardiology	|1001|
+|2|	Oncology	|1002|
+|3|	Neurology	|1001|
+|4|	Pediatrics	|1003|
+|5|	Dermatology	|1004|
+|6|	Ophthalmology	|1002|
+|7|	Orthopedics	|1003|
+|8|	Psychiatry	|1001|
+
+#### Task 1/ What are the names of all the patients in the hospital?
+
+
+  ```sql
+SELECT FirstName, LastName
+FROM Patients;
+```
+
+|FirstName|	LastName|
+|--------|----------|
+|Ahmed	|Ben Ali|
+|Aicha	|Hamdi|
+|Hichem	|Khalfaoui|
+|Amira	|Jemai|
+|Walid	|Bouzid|
+|Fatma	|Khammar|
+|Sofiane	|Ben Youssef|
+|Nesrine	|Zouari|
+
+#### Task 2/ What is the name and specialty of the doctor with ID 3?
+
+
+  ```sql
+SELECT FirstName, LastName, Specialty
+FROM Doctors
+WHERE DoctorID = 3;
+```
+
+
+|FirstName|	LastName|	Speciality|
+|--------|----------|-----------|
+|Ahmed|	Ben Youssef	|Neurology|
+
+#### Task 3/ What is the total number of visits made to the hospital so far?
+
+  ```sql
+SELECT COUNT(*) AS TotalVisits
+FROM Visits;
+```
+|total_visits|
+|---|
+|4|
+
+#### Task 4/ What is the average age of patients in the hospital?
+
+
+  ```sql
+SELECT AVG(Age) AS AverageAge
+FROM Patients;
+```
+|avg_age|
+|------|
+|38.125|
+
+#### Task 5/ Which department has the most doctors?
+
+
+  ```sql
+SELECT DepartmentName, COUNT(*) AS NumberOfDoctors
+FROM Departments d
+JOIN Doctors doc ON d.DepartmentID = doc.DepartmentID
+GROUP BY d.DepartmentName
+ORDER BY NumberOfDoctors DESC
+LIMIT 1;
+```
+|DepartmentName|	num_doctors|
+|------------|--------------|
+|Neurology	|1|
+
+#### Task 6/ How many patients have visited the hospital more than 3 times?
+
+
+  ```sql
+SELECT COUNT(*) AS NumberOfPatients
+FROM (
+    SELECT PatientID, COUNT(*) AS NumberOfVisits
+    FROM Visits
+    GROUP BY PatientID
+    HAVING NumberOfVisits > 3
+) AS VisitsCount;
+```
+
+#### Task 7/ Which doctor has prescribed the most medications to patients?
+
+  ```sql
+SELECT doc.FirstName, doc.LastName, COUNT(*) AS NumberOfPrescriptions
+FROM Doctors doc
+JOIN Visits v ON doc.DoctorID = v.DoctorID
+WHERE v.Prescription IS NOT NULL
+GROUP BY doc.FirstName, doc.LastName
+ORDER BY NumberOfPrescriptions DESC
+LIMIT 1;
+```
+
+|FirstName|	LastName|	num_prescriptions|
+|---------|----------|--------------|
+|Samira|	Ben Ammar|	1|
+
+ 
+
+</details>
