@@ -2006,7 +2006,7 @@ LIMIT 1;
 
 
 
-## Case 14: Hospital managment
+## Case 14: Hotel management
 
 <details>
   <summary>Click to expand</summary>
@@ -2087,16 +2087,7 @@ LIMIT 1;
 |Ali|	Ben Ali	|1|
   
 
- #### Task 3/ How many room services have been ordered in total?
-  
-   ```sql
-SELECT COUNT(*) AS TotalServices
-FROM RoomService;
-```
-   
-|TotalServices
-|---|
-|5|
+ 
  
   
 #### Task 3/ How many room services have been ordered in total?
@@ -2112,7 +2103,7 @@ FROM RoomService;
 
 #### Task 4/ Which room type is the most expensive?
 
-    ```sql
+ ```sql
 SELECT RoomType, MAX(Price) AS MaxPrice
 FROM Rooms
 GROUP BY RoomType;
@@ -2122,12 +2113,12 @@ GROUP BY RoomType;
 |---------|-------|
 |Single|	80|
 |Double|	120|
-|Suite|	|200|
+|Suite|	200|
   
  #### Task 5/ What is the total revenue generated from room services?
 
 
-    ```sql
+```sql
 SELECT SUM(Price) AS TotalRevenue
 FROM RoomService;
 ```
@@ -2139,7 +2130,7 @@ FROM RoomService;
 #### Task 6/ How many guests have not made any reservations?
 
 
-    ```sql
+ ```sql
 SELECT COUNT(*) AS GuestsWithoutReservations
 FROM Guests
 WHERE GuestID NOT IN (SELECT GuestID FROM Reservations);
@@ -2152,7 +2143,7 @@ WHERE GuestID NOT IN (SELECT GuestID FROM Reservations);
 #### Task 7/ Which guest has spent the most on room services?
 
 
-    ```sql
+```sql
 SELECT g.FirstName, g.LastName, SUM(rs.Price) AS TotalSpent
 FROM Guests g
 INNER JOIN Reservations r ON g.GuestID = r.GuestID
@@ -2163,7 +2154,7 @@ LIMIT 1;
 ```
    
 |FirstName	|LastName	|TotalSpent|
-  |------|---------|-----------|
+|------|---------|-----------|
 |Salma|	Chakroun|	30|
   
 </details>
