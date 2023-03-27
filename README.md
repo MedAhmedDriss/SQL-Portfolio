@@ -2002,3 +2002,60 @@ LIMIT 1;
  
 
 </details>
+
+
+
+
+## Case 14: Hospital managment
+
+<details>
+  <summary>Click to expand</summary>
+  
+  Hotel management involves various aspects such as guest services, room management, food and beverage services, housekeeping, and many more. Analyzing data from these areas can help hotel managers to optimize their operations, improve guest experiences, and increase profitability. For instance, analyzing guest preferences can help in personalizing services, and analyzing occupancy rates can help in optimizing room rates and pricing.
+
+Here are the four tables for a hotel management system, filled with random data for a Tunisian hotel:
+
+- **` Guests  `**
+
+| GuestID | FirstName | LastName | Email                | Phone       | Address         |
+|---------|-----------|----------|----------------------|-------------|-----------------|
+| 1       | Ali       | Ben Ali  | ali.benali@gmail.com | 12345678    | 123 Rue du Port |
+| 2       | Salma     | Chakroun | salma.c@gmail.com    | 98765432    | 32 Rue de Tunis |
+| 3       | Ahmed     | Bouazizi | ahmed.b@gmail.com    | 23791467    | 56 Rue Habib    |
+| 4       | Aicha     | Rezgui   | aicha.r@gmail.com    | 21654321    | 89 Rue de Sousse|
+| 5       | Mohamed   | Lahmar   | mohamed.l@gmail.com  | 700456123   | 120 Rue Farhat  |
+
+- **` Rooms  `**
+
+| RoomID | RoomType | Price | Availability |
+|--------|----------|-------|--------------|
+| 1      | Single   | 80    | Yes          |
+| 2      | Single   | 80    | No           |
+| 3      | Double   | 120   | Yes          |
+| 4      | Double   | 120   | No           |
+| 5      | Suite    | 200   | Yes          |
+
+- **` Reservations  `**
+
+| ReservationID | GuestID | RoomID | CheckIn     | CheckOut    |
+|---------------|---------|--------|-------------|--------------|
+| 1             | 1       | 1      | 2023-04-01  | 2023-04-03 |
+| 2             | 2       | 3      | 2023-04-02  | 2023-04-06 |
+| 3             | 3       | 2      | 2023-04-01  | 2023-04-04 |
+| 4             | 4       | 5      | 2023-04-03  | 2023-04-06 |
+| 5             | 5       | 1      | 2023-04-04  | 2023-04-05 |
+
+- **` Room Service  `**
+
+| ServiceID | ReservationID | ServiceType | Price |
+|-----------|---------------|-------------|--------|
+| 1         | 1             | Food        | 20     |
+| 2         | 1             | Laundry     | 15     |
+| 3         | 2             | Food        | 30     |
+| 4         | 3             | Food        | 20     |
+| 5         | 5             | Food        | 25     |
+
+
+
+  
+</details>
