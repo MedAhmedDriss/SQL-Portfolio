@@ -2056,6 +2056,114 @@ Here are the four tables for a hotel management system, filled with random data 
 | 5         | 5             | Food        | 25     |
 
 
+The `Guests` table contains information about the hotel guests, including their names, contact details, and address. The `Rooms` table contains details about the rooms, including room type, price, and availability. The `Reservations` table lists all the reservations made by guests, including check-in and check-out.The `Room Service` table includes information about the orders made by guests for food, drinks, and other services offered in their rooms.
+  
+#### Task 1/ How many rooms are available for reservation?
+  
+   ```sql
+SELECT COUNT(*) AS AvailableRooms
+FROM Rooms
+WHERE Availability = 'Yes';
+```
+   
+|AvailableRooms|
+|--------------|
+|3|
 
+#### Task 2/ Which guest has made the most number of reservations?
+
+  
+   ```sql
+SELECT g.FirstName, g.LastName, COUNT(*) AS TotalReservations
+FROM Guests g
+INNER JOIN Reservations r ON g.GuestID = r.GuestID
+GROUP BY g.GuestID, g.FirstName, g.LastName
+ORDER BY TotalReservations DESC
+LIMIT 1;
+```
+   
+|FirstName|	LastName|	TotalReservations|
+|--------|----------|-------------------|
+|Ali|	Ben Ali	|1|
+  
+
+ #### Task 3/ How many room services have been ordered in total?
+  
+   ```sql
+SELECT COUNT(*) AS TotalServices
+FROM RoomService;
+```
+   
+|TotalServices
+|---|
+|5|
+ 
+  
+#### Task 3/ How many room services have been ordered in total?
+  
+   ```sql
+SELECT COUNT(*) AS TotalServices
+FROM RoomService;
+```
+   
+|TotalServices|
+|---|
+|5|
+
+#### Task 4/ Which room type is the most expensive?
+
+    ```sql
+SELECT RoomType, MAX(Price) AS MaxPrice
+FROM Rooms
+GROUP BY RoomType;
+```
+   
+|RoomType	|MaxPrice|
+|---------|-------|
+|Single|	80|
+|Double|	120|
+|Suite|	|200|
+  
+ #### Task 5/ What is the total revenue generated from room services?
+
+
+    ```sql
+SELECT SUM(Price) AS TotalRevenue
+FROM RoomService;
+```
+   
+|TotalRevenue|
+|---|
+|110|
+ 
+#### Task 6/ How many guests have not made any reservations?
+
+
+    ```sql
+SELECT COUNT(*) AS GuestsWithoutReservations
+FROM Guests
+WHERE GuestID NOT IN (SELECT GuestID FROM Reservations);
+```
+   
+|GuestsWithoutReservations|
+|---|
+|0|
+  
+#### Task 7/ Which guest has spent the most on room services?
+
+
+    ```sql
+SELECT g.FirstName, g.LastName, SUM(rs.Price) AS TotalSpent
+FROM Guests g
+INNER JOIN Reservations r ON g.GuestID = r.GuestID
+INNER JOIN RoomService rs ON r.ReservationID = rs.ReservationID
+GROUP BY g.GuestID, g.FirstName, g.LastName
+ORDER BY TotalSpent DESC
+LIMIT 1;
+```
+   
+|FirstName	|LastName	|TotalSpent|
+  |------|---------|-----------|
+|Salma|	Chakroun|	30|
   
 </details>
