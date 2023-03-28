@@ -2158,3 +2158,18 @@ LIMIT 1;
 |Salma|	Chakroun|	30|
   
 </details>
+
+## Case 15: Customer Segmentation in CRM
+
+<details>
+  <summary>Click to expand</summary>
+  
+ Customer segmentation is the practice of breaking down a company's customer base into smaller groups based on shared traits so that marketing messages and strategies may be tailored to each group. Customer segmentation is a crucial strategy for firms trying to manage their customer connections and improve customer engagement in the context of CRM (Customer Relationship Management).
+ 
+ Businesses can better understand their customer's requirements and preferences by segmenting their client base based on demographic, geographic, psychographic, and behavioral variables. This allows them to create marketing campaigns that are targeted to those demands. This enables companies to target their marketing initiatives more successfully, which boosts conversion rates and boosts client loyalty.
+
+Age, gender, income, region, buying habits, and customer lifetime value are some typical segmentation criteria utilized in CRM. The particular variables employed will vary depending on the type of business and the goods or services provided.
+
+Overall, customer segmentation is essential to a successful CRM strategy since it enables organizations to develop stronger connections with their clients and boost client loyalty and satisfaction.
+ 
+ </details>
