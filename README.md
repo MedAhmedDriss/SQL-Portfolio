@@ -2188,6 +2188,7 @@ Overall, customer segmentation is essential to a successful CRM strategy since i
 |9|	Hamza Sassi	|hamza_sassi@esprix.com	|+216 90123456	|Avenue de Carthage, Sfax	|27	|Male|
 |10|	Aya Ben Ahmed	|aya_benahmed@esprix.com	|+216 01234567	|Avenue Habib Bourguiba, Tunis	|41	|Female|
 
+  
 - **`Transactions `**
 
 |transaction_id	|customer_id	|transaction_date	|product_name	|price|
@@ -2211,6 +2212,8 @@ Overall, customer segmentation is essential to a successful CRM strategy since i
 |17	|10	|2023-03-18 10:05:55.000	|Asus ROG Strix Laptop	|2299.99|
 |18	|10	|2022-12-10 13:45:15.000	|Samsung Galaxy Buds Pro	|199.99|
 |19	|10	|2023-01-01 08:22:42.000	|Xiaomi Mi Smart Band 6	|69.99|
+  
+
  
  - **`Segments `**
  
@@ -2235,5 +2238,114 @@ Overall, customer segmentation is essential to a successful CRM strategy since i
 |2|	Loyal Customers|	2	|4	|2000.00|	4000.00|	90|	365|
 |3|	Potential Loyalists	|1	|3	|1000.00	|3000.00	|180	|365|
 |4|	Price Sensitive|	1	|2	|500.00|	2000.00|	60	|365|
+  
+  
+#### Task 1/What are the total sales for each product category?
+
+```sql
+SELECT category, SUM(amount) AS total_sales
+FROM transactions
+GROUP BY category;
+```
+|category|	total_sales|
+|----------|--------------|
+|Electronics|	5899.93|
+|Fashion|	4299.96|
+|Beauty|	1349.99|
+|Home|	3549.98|
+|Sports|	2199.98|
+  
+  
+#### Task 2/What is the average amount spent per customer?
+
+```sql
+SELECT AVG(amount) AS avg_amount_spent_per_customer
+FROM transactions;
+```
+|avg_amount_spent_per_customer|
+|----------------|
+|284.64|
+  
+#### Task 3/What are the top 5 customers in terms of total amount spent?
+
+```sql
+SELECT customer_id, SUM(amount) AS total_spent
+FROM transactions
+GROUP BY customer_id
+ORDER BY total_spent DESC
+LIMIT 5;
+```
+|customer_id	|	total_spent|
+|----------|--------------|
+|1|	3149.98|
+|5|	3599.98|
+|10|	4169.94|
+|7|	2099.97|
+|8|	2699.98|
+  
+#### Task 4/What are the top 3 most popular products?
+
+```sql
+SELECT product_name, COUNT(*) AS purchase_count
+FROM transactions
+GROUP BY product_name
+ORDER BY purchase_count DESC
+LIMIT 3;
+```
+|product_name	|	purchase_count|
+|----------|--------------|
+|iPhone 13 Pro Max	|4|
+|Nike Air Max 270	|3
+|Samsung Galaxy S21	|3|
+  
+#### Task 5/What is the total amount spent by customers in each age group?
+
+```sql
+SELECT age_group, SUM(amount) AS total_spent
+FROM transactions
+JOIN customers ON transactions.customer_id = customers.customer_id
+GROUP BY age_group;
+```
+|age_group  	|	total_spent|
+|----------|--------------|
+|18-24|	1279.97|
+|25-34|	6959.89|
+|35-44|	2949.96|
+|45-54|	649.99|
+|55+|	1661.97|
  
+#### Task 6/What are the top 3 customers in terms of the number of purchases made?
+
+```sql
+SELECT customer_id, COUNT(*) AS purchase_count
+FROM transactions
+GROUP BY customer_id
+ORDER BY purchase_count DESC
+LIMIT 3;
+```
+|customer_id  	|	purchase_count|
+|----------|--------------|
+|10	|4|
+|1	|2|
+|5	|2|
+  
+#### Task 7/How many customers are there in each segment?
+
+
+```sql
+SELECT segment_name, COUNT(*) AS customer_count
+FROM customers
+JOIN segments ON customers.segment_id = segments.segment_id
+GROUP BY segment_name;
+```
+|segment_name  	|	customer_count|
+|----------|--------------|
+|High Spenders	|2|
+|Loyal Customers	|2|
+|Potential Loyalists	|2|
+|Price Sensitive	|2|
+  
+
+  
+  
  </details>
