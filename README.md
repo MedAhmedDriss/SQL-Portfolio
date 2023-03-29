@@ -2171,5 +2171,69 @@ LIMIT 1;
 Age, gender, income, region, buying habits, and customer lifetime value are some typical segmentation criteria utilized in CRM. The particular variables employed will vary depending on the type of business and the goods or services provided.
 
 Overall, customer segmentation is essential to a successful CRM strategy since it enables organizations to develop stronger connections with their clients and boost client loyalty and satisfaction.
+
+
+- **`Customers `**
+
+|ustomer_id|	name|	email|	phone_number|	address|	age|	gender|
+|-----------|-----|-------|-------------|---------|----|----------|
+|1|	Mohamed Ali	|mohamed_ali@esprix.com	|+216 12345678	|Avenue Habib Bourguiba, Tunis	|35	|Male|
+|2|	Fatma Ben Said	|fatma_bensaid@esprix.com	|+216 23456789	|Rue Ali Belhaouane, Sousse	|24	|Female|
+|3|	Ahmed Haddad	|ahmed_haddad@esprix.com	|+216 34567890	|Rue Khaled Ibn El Walid, Sfax	|45	|Male|
+|4|	Amira Khaldi	|amira_khaldi@esprix.com	|+216 45678901	|Avenue Farhat Hached, Tunis	|29	|Female|
+|5|	Mehdi Ben Ali	|mehdi_benali@esprix.com	|+216 56789012	|Rue Abou Dhabi, Nabeul	|38	|Male|
+|6|	Salma Trabelsi	|salma_trabelsi@esprix.com	|+216 67890123	|Rue des Orangers, Sousse	|22	|Female|
+|7|	Ali Ben Youssef	|ali_benyoussef@esprix.com	|+216 78901234	|Avenue de Paris, Tunis	|49	|Male|
+|8|	Noura Ben Hamouda	|noura_benhamouda@esprix.com	|+216 89012345	|Rue des Palmiers, Gabès	|31	|Female|
+|9|	Hamza Sassi	|hamza_sassi@esprix.com	|+216 90123456	|Avenue de Carthage, Sfax	|27	|Male|
+|10|	Aya Ben Ahmed	|aya_benahmed@esprix.com	|+216 01234567	|Avenue Habib Bourguiba, Tunis	|41	|Female|
+
+- **`Transactions `**
+
+|transaction_id	|customer_id	|transaction_date	|product_name	|price|
+|--------------|-------------|------------------|------------|------|
+|1	|1	|2022-10-04 10:31:25.000	|Samsung Galaxy S20	|1349.99|
+|2	|1	|2022-12-17 14:23:37.000	|Apple iPhone 13	|1799.99|
+|3	|2	|2023-01-22 08:12:45.000	|Dell Inspiron Laptop	|899.99|
+|4	|3	|2022-11-11 11:11:11.000	|Huawei MateBook Pro X	|1499.99|
+|5	|4	|2023-03-01 18:45:22.000	|Samsung Galaxy Tab S7	|849.99|
+|6	|5	|2022-09-15 13:05:00.000	|Apple iPad Pro	|1099.99|
+|7	|5	|2023-03-10 16:33:47.000	|LG OLED TV	|2499.99|
+|8	|6	|2022-12-05 20:01:12.000	|Bose QuietComfort Headphones	|329.99|
+|9	|6	|2022-11-23 11:25:50.000	|Sony PlayStation 5	|749.99|
+|10	|7	|2023-02-08 09:18:35.000	|Samsung Galaxy Watch 4	|349.99|
+|11	|7	|2022-11-02 16:59:10.000	|Apple AirPods Pro	|249.99|
+|12	|7	|2023-01-05 14:37:20.000	|HP Spectre x360 Laptop	|1499.99|
+|13	|8	|2022-10-17 08:40:00.000	|Apple MacBook Air	|1299.99|
+|14	|8	|2023-03-22 15:55:30.000	|Microsoft Surface Pro 8	|1399.99|
+|15	|9	|2022-11-25 09:10:20.000	|Samsung Galaxy A52	|499.99|
+|16	|10	|2023-02-14 17:30:00.000	|Apple iPhone 12	|1099.99|
+|17	|10	|2023-03-18 10:05:55.000	|Asus ROG Strix Laptop	|2299.99|
+|18	|10	|2022-12-10 13:45:15.000	|Samsung Galaxy Buds Pro	|199.99|
+|19	|10	|2023-01-01 08:22:42.000	|Xiaomi Mi Smart Band 6	|69.99|
+ 
+ - **`Segments `**
+ 
+|customer_id|	purchase_count|	total_spent|	last_purchase_date|
+|-----------|--------------|------------|---------------------|
+|1	|2	|3149.98	|2022-12-17 |14:23:37.000|
+|2	|1	|899.99	|2023-01-22 |08:12:45.000|
+|3|	1	|1499.99	|2022-11-11 |11:11:11.000|
+|4|	1	|849.99	|2023-03-01 |18:45:22.000|
+|5|	2	|3599.98	|2023-03-10 |16:33:47.000|
+|6|	2	|1079.98	|2022-12-05 |20:01:12.000|
+|7|	3	|2099.97	|2023-01-05 |14:37:20.000|
+|8|	2	|2699.98	|2023-03-22 |15:55:30.000|
+|9|	1	|499.99	|2022-11-25 |09:10:20.000|
+|10	|4	|4169.94	|2023-03-18 |10:05:55.000|
+ 
+  - **`Customer_Behavior `**
+  
+|segment_id	|segment_name	|min_purchase_count|	max_purchase_count|	min_total_spent|	max_total_spent|	min_last_purchase_days|	max_last_purchase_days|
+|----------|-------------|-------------------|--------------------|---------------|----------------|--------------------------|-----------------------|
+|1|	High Spenders|	3	|4	|3000.00	|5000.00	|60	|180|
+|2|	Loyal Customers|	2	|4	|2000.00|	4000.00|	90|	365|
+|3|	Potential Loyalists	|1	|3	|1000.00	|3000.00	|180	|365|
+|4|	Price Sensitive|	1	|2	|500.00|	2000.00|	60	|365|
  
  </details>
