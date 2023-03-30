@@ -2169,8 +2169,10 @@ LIMIT 1;
  Businesses can better understand their customer's requirements and preferences by segmenting their client base based on demographic, geographic, psychographic, and behavioral variables. This allows them to create marketing campaigns that are targeted to those demands. This enables companies to target their marketing initiatives more successfully, which boosts conversion rates and boosts client loyalty.
 
 Age, gender, income, region, buying habits, and customer lifetime value are some typical segmentation criteria utilized in CRM. The particular variables employed will vary depending on the type of business and the goods or services provided.
-
 Overall, customer segmentation is essential to a successful CRM strategy since it enables organizations to develop stronger connections with their clients and boost client loyalty and satisfaction.
+
+In this case we have the four tables below: The `Customers` table contains information about individual customers, including their name, contact details, age, and gender. The `Transactions` table lists all purchases made by customers, including the product name, price, and transaction date. The `Products` table provides detailed information about each product, including the manufacturer, category, and unit cost. Finally, the `Reviews` table allows customers to leave feedback on products they have purchased, including a rating and written review.
+
 
 
 - **`Customers `**
