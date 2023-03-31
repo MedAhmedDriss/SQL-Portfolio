@@ -2346,6 +2346,9 @@ GROUP BY segment_name;
 |Loyal Customers	|2|
 |Potential Loyalists	|2|
 |Price Sensitive	|2|
+
+  
+  </details> 
   
 ## Case 16: Honey Market Analysis
 
