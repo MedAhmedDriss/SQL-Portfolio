@@ -2347,7 +2347,13 @@ GROUP BY segment_name;
 |Potential Loyalists	|2|
 |Price Sensitive	|2|
   
+## Case 16: Honey Market Analysis
 
+<details>
+  <summary>Click to expand</summary>
   
+  Honey is a viscous food substance that is sweet and is made by bees. Bees produce honey from sugary floral secretions or secretions of other insects (such as honeydew) through the process of regurgitation and enzymatic activity and water evaporation of the sugary secretions consumed during foraging by the bees which are then stored in honeycombs. Bees produce honey from various sources, including flowers of the manuka tree, blossoms of linden or basswood trees, alfalfa growing in natural fields, flowers of the black locust, or acacia tree; buckwheat flowers; clover plant flowers, and others.
+  
+  Honey is collected from the honeycombs as well from beehives maintained through beekeeping or “Apiculture.” We categorize the honey market as a part of the overall packaged foods and meats market. The packaged foods and meats products market covers manufacturers or food processing vendors that are involved in food processing to eliminate microorganisms and to extend shelf life. The packaged foods and meats market is part of the global food and beverage market which was valued at USD 7.93 trillion in 2018 and is expected to grow at a moderate pace.
   
  </details>
