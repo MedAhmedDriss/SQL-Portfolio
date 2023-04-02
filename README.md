@@ -2363,4 +2363,59 @@ GROUP BY segment_name;
   
   We are using the production, trade, and price of "natural honey" from the FAOSTAT database(https://www.fao.org/faostat/en/#data) for our analysis of the honey market. The FAOSTAT database provides comprehensive data on global agriculture, including production and trade statistics on various crops and livestock. By accessing the FAOSTAT database, we can obtain information on the production, trade, and price of natural honey across different countries and time periods. This data is crucial in our efforts to understand the honey market and identify trends and patterns that can inform our analysis. It is important to note that the use of the FAOSTAT database is subject to the terms of use outlined on their website, which include restrictions on commercial use and redistribution of data. As such, we will ensure that our use of the database is in compliance with these terms.
   
+  
+  #### Task 1/ What is the average producer price of natural honey in each country from 2015 to 2021?
+
+```sql
+SELECT Area, AVG(Value) AS Avg_Producer_Price
+FROM table_name
+WHERE Item = 'Producer Price (USD/tonne)' AND Year BETWEEN 2015 AND 2021
+GROUP BY Area;
+```
+
+  #### Task 2/ What is the total import quantity of honey in each country from 2010 to 2022?
+
+
+```sql
+SELECT Area, SUM(Value) AS Total_Import_Quantity
+FROM table_name
+WHERE Item = 'Import Quantity' AND Year BETWEEN 2010 AND 2022
+GROUP BY Area;
+```
+
+ #### Task 3/ What is the total trade balance (export value - import value) of each country for natural honey in 2021?
+
+
+```sql
+SELECT Area, SUM(CASE WHEN Item = 'Export Value' THEN Value ELSE -Value END) AS Trade_Balance
+FROM table_name
+WHERE Item IN ('Export Value', 'Import Value') AND Year = 2021
+GROUP BY Area;
+```
+
+ #### Task 4/ Which countries have the highest import value of honey in the year 2022?
+
+
+
+```sql
+SELECT Area, Value AS Import_Value
+FROM table_name
+WHERE Item = 'Import Value' AND Year = 2022
+ORDER BY Import_Value DESC
+LIMIT 10;
+```
+
+ #### Task 5/ What is the total production of natural honey in each country over the past 5 years?
+
+
+
+
+```sql
+SELECT Area, SUM(Value) AS Total_Production
+FROM table_name
+WHERE Item = 'Production' AND Element = 'Produced'
+  AND Year BETWEEN (YEAR(CURDATE()) - 5) AND YEAR(CURDATE())
+GROUP BY Area;
+```
+  
  </details>
