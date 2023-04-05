@@ -2365,6 +2365,17 @@ GROUP BY segment_name;
   
   We are using the production, trade, and price of "natural honey" from the FAOSTAT database(**https://www.fao.org/faostat/en/#data**) for our analysis of the honey market. The FAOSTAT database provides comprehensive data on global agriculture, including production and trade statistics on various crops and livestock. By accessing the FAOSTAT database, we can obtain information on the production, trade, and price of natural honey across different countries and time periods. This data is crucial in our efforts to understand the honey market and identify trends and patterns that can inform our analysis. It is important to note that the use of the FAOSTAT database is subject to the terms of use outlined on their website, which include restrictions on commercial use and redistribution of data. As such, we will ensure that our use of the database is in compliance with these terms.
   
+
+  
+  <div align="center">
+  
+  <img src="Data_domains.png" alt="Data domains" width="500" figcaption=" Data domains selection " />
+  <img src="Domains_Filtering.png" alt="Image 2" width="400" figcaption="Data domains filtering" />
+</div>
+
+
+
+  
  ### &bull; Data Collection :
  
  To collect data on natural honey production, trade, and prices from the FAOSTAT database, we selected the three relevant domains: Production, Trade, and Prices. We then included all available countries and years, and applied a filter for natural honey in the "Items" category. This resulted in a dataset containing information on natural honey production, trade, and prices for various countries and years. Please refer to the following images for a better understanding of the filtering process:
