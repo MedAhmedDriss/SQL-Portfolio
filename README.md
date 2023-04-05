@@ -2355,6 +2355,8 @@ GROUP BY segment_name;
 <details>
   <summary>Click to expand</summary>
   
+  ### &#8226; Introduction:
+  
   *Honey* is a viscous food substance that is sweet and is made by bees. Bees produce honey from sugary floral secretions or secretions of other insects (such as honeydew) through the process of regurgitation and enzymatic activity and water evaporation of the sugary secretions consumed during foraging by the bees which are then stored in honeycombs. *Bees* produce honey from various sources, including flowers of the manuka tree, blossoms of linden or basswood trees, alfalfa growing in natural fields, flowers of the black locust, or acacia tree; buckwheat flowers; clover plant flowers, and others.
   
   Honey is collected from the honeycombs as well from beehives maintained through beekeeping or “Apiculture.” We categorize the honey market as a part of the overall packaged foods and meats market. The packaged foods and meats products market covers manufacturers or food processing vendors that are involved in food processing to eliminate microorganisms and to extend shelf life. The packaged foods and meats market is part of the global food and beverage market which was valued at USD **7.93 trillion** in 2018 and is expected to grow at a moderate pace.
@@ -2363,9 +2365,14 @@ GROUP BY segment_name;
   
   We are using the production, trade, and price of "natural honey" from the FAOSTAT database(**https://www.fao.org/faostat/en/#data**) for our analysis of the honey market. The FAOSTAT database provides comprehensive data on global agriculture, including production and trade statistics on various crops and livestock. By accessing the FAOSTAT database, we can obtain information on the production, trade, and price of natural honey across different countries and time periods. This data is crucial in our efforts to understand the honey market and identify trends and patterns that can inform our analysis. It is important to note that the use of the FAOSTAT database is subject to the terms of use outlined on their website, which include restrictions on commercial use and redistribution of data. As such, we will ensure that our use of the database is in compliance with these terms.
   
-  **Full Data Link** : https://docs.google.com/spreadsheets/d/1KyiypHl5e3GYlVPDSqBcLmh_GxuO8N1URinRZ5C36-E/edit?usp=sharing
+ ### &bull; Data Collection :
+ 
+ To collect data on natural honey production, trade, and prices from the FAOSTAT database, we selected the three relevant domains: Production, Trade, and Prices. We then included all available countries and years, and applied a filter for natural honey in the "Items" category. This resulted in a dataset containing information on natural honey production, trade, and prices for various countries and years. Please refer to the following images for a better understanding of the filtering process:
   
+### &bull; Full Data [Link](https://docs.google.com/spreadsheets/d/1KyiypHl5e3GYlVPDSqBcLmh_GxuO8N1URinRZ5C36-E/edit?usp=sharing) 
   
+### &bull; Data query : 
+
   #### Task 1/ What is the average producer price of natural honey in each country from 2015 to 2021?
 
 ```sql
