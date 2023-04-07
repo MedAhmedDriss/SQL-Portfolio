@@ -2370,7 +2370,7 @@ GROUP BY segment_name;
   
  ### &bull; Data Collection :
  
- To collect data on natural honey production, trade, and prices from the FAOSTAT database, we selected the three relevant domains: Production, Trade, and Prices. We then included all available countries and years, and applied a filter for natural honey in the "Items" category. This resulted in a dataset containing information on natural honey production, trade, and prices for various countries and years. Please refer to the following images for a better understanding of the filtering process:
+ To collect data on natural honey production, trade, and prices from the FAOSTAT database, we selected the **three relevant domains**: Production, Trade, and Prices. We then included all available **countries** and **years**, and applied a filter for **natural honey** in the "Items" category. This resulted in a dataset containing information on natural honey production, trade, and prices for various countries and years. Please refer to the following images for a better understanding of the filtering process:
   
   
   <div align="center"> 
