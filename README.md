@@ -2442,4 +2442,15 @@ WHERE Item = 'Production' AND Element = 'Produced'
 GROUP BY Area;
 ```
   
+ #### Task 6/ Which  top 10 countries have the highest yield of honey in the year 2021?
+
+
+```sql
+SELECT Area, Value AS Yield
+FROM honey_table
+WHERE Item = 'Yield' AND Year = 2021
+ORDER BY Yield DESC
+LIMIT 10;
+```  
+
  </details>
