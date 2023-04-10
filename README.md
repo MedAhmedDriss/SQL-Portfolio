@@ -2175,7 +2175,7 @@ In this case we have the four tables below: The `Customers` table contains infor
 
 
 
-- **`Customers `**
+&bull; **`Customers `**
 
 |ustomer_id|	name|	email|	phone_number|	address|	age|	gender|
 |-----------|-----|-------|-------------|---------|----|----------|
@@ -2191,7 +2191,7 @@ In this case we have the four tables below: The `Customers` table contains infor
 |10|	Aya Ben Ahmed	|aya_benahmed@esprix.com	|+216 01234567	|Avenue Habib Bourguiba, Tunis	|41	|Female|
 
   
-- **`Transactions `**
+&bull; **`Transactions `**
 
 |transaction_id	|customer_id	|transaction_date	|product_name	|price|
 |--------------|-------------|------------------|------------|------|
@@ -2217,7 +2217,7 @@ In this case we have the four tables below: The `Customers` table contains infor
   
 
  
- - **`Segments `**
+&bull; **`Segments `**
  
 |customer_id|	purchase_count|	total_spent|	last_purchase_date|
 |-----------|--------------|------------|---------------------|
@@ -2232,7 +2232,7 @@ In this case we have the four tables below: The `Customers` table contains infor
 |9|	1	|499.99	|2022-11-25 |09:10:20.000|
 |10	|4	|4169.94	|2023-03-18 |10:05:55.000|
  
-  - **`Customer_Behavior `**
+  &bull; **`Customer_Behavior `**
   
 |segment_id	|segment_name	|min_purchase_count|	max_purchase_count|	min_total_spent|	max_total_spent|	min_last_purchase_days|	max_last_purchase_days|
 |----------|-------------|-------------------|--------------------|---------------|----------------|--------------------------|-----------------------|
