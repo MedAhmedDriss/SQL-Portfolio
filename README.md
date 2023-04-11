@@ -1851,7 +1851,7 @@ WHERE Phone LIKE '+216 50%';
   The four tables related to hospital management are Patients, Doctors, Visits, and Departments. The Patients table contains information about the hospital's patients, including their ID, name, age, gender, and contact information. The Doctors table includes information about the hospital's doctors, such as their ID, name, specialty, and contact information. The Visits table tracks each patient's visits to the hospital, including the date and time of the visit, the doctor they saw, and their diagnosis and prescription. Finally, the Departments table lists the various departments within the hospital, including their ID, name, and the hospital they are associated with.
   
   
-   - **` Patients  `**
+&bull; **` Patients  `**
 
 |PatientID|	FirstName|	LastName|	Gender|	DateOfBirth|	ContactNo|	Address|
 |----------|---------|----------|-------|-----------|----------|---------|
@@ -1864,7 +1864,7 @@ WHERE Phone LIKE '+216 50%';
 |7	|Sofiane	|Ben Youssef	|Male	|1990-02-21	|+216 99 888 777	|7 Rue Tahar Haddad, Sfax, TN|
 |8|	Nesrine|	Zouari	|Female	|1978-11-14	|+216 50 111 222	|6 Rue Mohammed Ali, Tunis, TN|
 
-  - **` Doctors   `**
+ &bull; **` Doctors   `**
   
   
 |DoctorID	|FirstName|	LastName|	Gender	|Speciality|
@@ -1878,7 +1878,7 @@ WHERE Phone LIKE '+216 50%';
 |7|	Nizar	|Mabrouk	|Male	|Orthopedics|
 |8|	Amina	|Khalfaoui	|Female	|Psychiatry|
 
- - **` Visits     `**
+ &bull; **` Visits     `**
  
 |VisitID|	PatientID	|DoctorID	|VisitDate	|VisitTime	|Diagnosis	|Prescription|
 |-------|----------|----------|--------|---------|----------|------------|
@@ -1888,7 +1888,7 @@ WHERE Phone LIKE '+216 50%';
 |4	|4|	4	|2023-03-31	|08:00:00	|Respiratory syncytial virus|	Acetaminophen 325 mg/5 mL oral suspension as needed for fever and pain|
 
 
- - **` Departments      `**
+&bull; **` Departments      `**
 
 |DepartmentID|	DepartmentName|	HospitalID|
 |-------------|---------------|----------|
@@ -2015,7 +2015,7 @@ LIMIT 1;
 
 Here are the four tables for a hotel management system, filled with random data for a Tunisian hotel:
 
-- **` Guests  `**
+&bull; **` Guests  `**
 
 | GuestID | FirstName | LastName | Email                | Phone       | Address         |
 |---------|-----------|----------|----------------------|-------------|-----------------|
@@ -2025,7 +2025,7 @@ Here are the four tables for a hotel management system, filled with random data 
 | 4       | Aicha     | Rezgui   | aicha.r@gmail.com    | 21654321    | 89 Rue de Sousse|
 | 5       | Mohamed   | Lahmar   | mohamed.l@gmail.com  | 700456123   | 120 Rue Farhat  |
 
-- **` Rooms  `**
+&bull; **` Rooms  `**
 
 | RoomID | RoomType | Price | Availability |
 |--------|----------|-------|--------------|
@@ -2035,7 +2035,7 @@ Here are the four tables for a hotel management system, filled with random data 
 | 4      | Double   | 120   | No           |
 | 5      | Suite    | 200   | Yes          |
 
-- **` Reservations  `**
+&bull; **` Reservations  `**
 
 | ReservationID | GuestID | RoomID | CheckIn     | CheckOut    |
 |---------------|---------|--------|-------------|--------------|
@@ -2045,7 +2045,7 @@ Here are the four tables for a hotel management system, filled with random data 
 | 4             | 4       | 5      | 2023-04-03  | 2023-04-06 |
 | 5             | 5       | 1      | 2023-04-04  | 2023-04-05 |
 
-- **` Room Service  `**
+&bull; **` Room Service  `**
 
 | ServiceID | ReservationID | ServiceType | Price |
 |-----------|---------------|-------------|--------|
