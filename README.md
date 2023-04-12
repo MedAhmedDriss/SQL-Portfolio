@@ -10,7 +10,7 @@
 We have four tables below for a fictional school that tracks student grades.
 The `Students` table contains information about the students enrolled in the school, including their unique ID, first name, last name, and email. The `Courses` table lists all the courses offered by the school and includes the course ID, name, and instructor ID. The `Instructors` table contains information about the instructors who teach at the school, including their unique ID, first name, last name, and email. Finally, the `Grades` table contains information about the grades earned by each student in each course, including the student ID, course ID, and actual grade earned.
 
-- **`students`**
+&bull; **`students`**
 
 | student_id | first_name | last_name   | email                       |
 |------------|------------|-------------|-----------------------------|
@@ -22,7 +22,7 @@ The `Students` table contains information about the students enrolled in the sch
 | 6          | Mohamed    | Ben Ali     | mohamed.benali@esprix.com  |
 | 7          | Asma       | Saadi       | asma.saadi@esprix.com      |
 
--**`courses`**
+&bull; **`courses`**
 
 | course_id | course_name | instructor_id |
 |-----------|-------------|---------------|
@@ -30,7 +30,7 @@ The `Students` table contains information about the students enrolled in the sch
 | 2         | English  | 2             |
 | 3         | History  | 3             |
 
--**` instructors`**
+&bull; **` instructors`**
 
 | instructor_id | first_name | last_name    | email                        |
 |---------------|------------|--------------|------------------------------|
@@ -38,7 +38,7 @@ The `Students` table contains information about the students enrolled in the sch
 | 2             | Zainab     | Fehmi        | zainab.fehmi@esprix.com      |
 | 3             | Youssef    | Bel Haj Amor | youssef.belhajamor@esprix.com|
 
--**` instructors`**
+&bull; **` instructors`**
 
 | enrollment_id | student_id | course_id    | grade                        |
 |---------------|------------|--------------|------------------------------|
@@ -162,7 +162,7 @@ LIMIT 1;
 
 We'll make use of details regarding a publishing business that issues both translated and original works.  `Books`, `Authors`, `Editors`, and `Translators`. The `Books` table contains information about the books, including their title, type, and foreign keys for authors, editors, and translators. The `Authors` table includes the IDs and names of the authors, while the `Editors` table lists the IDs and names of the editors. Lastly, the `Translators` table has information about the translators.
 
-- **`Books`**
+&bull; **`Books`**
 
 | ID  | Title | Type  | author_id | editor_id  | translator_id |
 | :------------- | :------------- | :------------- | :------------- | :------------- | :------------- |
@@ -175,7 +175,7 @@ We'll make use of details regarding a publishing business that issues both trans
 | 7  | The Control of Nature | Original | 17  | 26  |   |
 | 8  | Your Happy Life	 | Translated | 15  | 23  | 33  |
 
-- **`Authors`**
+&bull; **`Authors`**
 
 | ID  | first_name | last_name  | 
 | :------------- | :------------- | :------------- | 
@@ -188,7 +188,7 @@ We'll make use of details regarding a publishing business that issues both trans
 | 17  | John   | McPhee  |
 
 
-- **`Editors`**
+&bull; **`Editors`**
 
 | ID  | first_name | last_name  | 
 | :------------- | :------------- | :------------- | 
@@ -199,7 +199,7 @@ We'll make use of details regarding a publishing business that issues both trans
 | 25  | Sebastian  | Wright  |
 | 26  | Joshua   | Rothman   |
 
-- **`translators`**
+&bull; **`translators`**
 
 | ID  | first_name | last_name  | 
 | :------------- | :------------- | :------------- | 
