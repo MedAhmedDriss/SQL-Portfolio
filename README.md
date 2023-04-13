@@ -2453,4 +2453,32 @@ ORDER BY Yield DESC
 LIMIT 10;
 ```  
 
+
+ #### Task 7/ What is the percentage change in export value of natural honey in the United States from 2015 to 2021?
+ 
+ ```sql
+ 
+SELECT (MAX(Value) - MIN(Value))/MIN(Value) * 100 AS Percentage_Change
+FROM honey_table
+WHERE Item = 'Export Value' AND Area = 'United States' AND Year BETWEEN 2015 AND 2021;
+
+```  
+ 
+ 
+ #### Task 8/ What is the average price of natural honey per kilogram in the European Union in the year 2020?
+ 
+  ```sql
+  
+SELECT AVG(Value/1000) AS Avg_Price_Per_Kg
+FROM honey_table
+WHERE Item = 'Producer Price (USD/tonne)' AND Element = 'Producer Price'
+  AND Area IN ('Austria', 'Belgium', 'Bulgaria', 'Croatia', 'Cyprus', 'Czechia', 'Denmark',
+               'Estonia', 'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Ireland',
+               'Italy', 'Latvia', 'Lithuania', 'Luxembourg', 'Malta', 'Netherlands',
+               'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden')
+  AND Year = 2020;
+
+
+```  
+
  </details>
